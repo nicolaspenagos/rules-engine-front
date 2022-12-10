@@ -6,7 +6,7 @@
     <input
       type="text"
       class="px-4 py-1 z-9 rounded border border-slate-300 text-gray-800 w-24 cursor-pointer"
-      v-model="operand"
+      v-model="option"
       autocomplete="off"
       readonly
       @focus="modal=true"
@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      operand: '',
+      option: '',
       options: ['>', '=', '<'],
       filteredOption: [],
       modal:false
@@ -39,7 +39,7 @@ export default {
   methods: {
     filterOptions() {
       this.filteredOption = this.options.filter((option) => {
-        return this.operand.toLocaleLowerCase().startsWith(this.operand.toLowerCase());
+        return this.option.toLocaleLowerCase().startsWith(this.option.toLowerCase());
       });
     },
     setOption(filteredOption) {
@@ -48,7 +48,7 @@ export default {
     },
   },
   mounted(){
-    if(this.operand.length==0)
+    if(this.option.length==0)
         this.filteredOption = this.options;
     this.filterOptions();
   }
