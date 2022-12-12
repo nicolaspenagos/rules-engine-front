@@ -11,8 +11,8 @@
             </Column>
             <Operand class="mb-2">
             </Operand>
-            <Comparator class="mb-2">
-            </Comparator>
+            <Type class="mb-2">
+            </Type>
             <Value>
             </Value>
         </main>
@@ -21,13 +21,13 @@
 <script>
 import Column from './expression/Column.vue'
 import Operand from './expression/Operand.vue'
-import Comparator from '../components/expression/Comparator.vue'
+import Type from './expression/Type.vue'
 import Value from './expression/Value.vue';
 export default {
     components:{
         Column,
         Operand,
-        Comparator,
+        Type,
         Value
     }
  
