@@ -4,5 +4,6 @@ export class Expression {
         this.operand = null;
         this.typeValue = null;
         this.value = null;
+        this.id = null;
     }
 }

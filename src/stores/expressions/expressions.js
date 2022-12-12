@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import { Expression } from "../../model/Expression";
+import { v4 as generateRandomUUID } from 'uuid';
+
 const userExpressionStore = defineStore("expressions", {
     state: () => ({
-        expressions: []
+        expressions: new Map()
     }),
     getters: {
         getexpressions: (state) => expressions,
@@ -17,8 +19,14 @@ const userExpressionStore = defineStore("expressions", {
                 typeof newExpression.typeValue === "undefined" || typeof newExpression.value === "undefined")
                 throw new Error("An expression with undefined parameters received");
 
-            this.expressions.push(newExpression);
+            const id = generateRandomUUID();
+            newExpression.id = id;
+            this.expressions.set(id, newExpression)
+
         },
+        getExpression(id) {
+            return this.expressions.get(id);
+        }
 
     }
 });
