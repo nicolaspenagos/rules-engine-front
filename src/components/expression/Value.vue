@@ -1,12 +1,10 @@
 <template>
   <div class="flex flex-col items-start">
-    <p class="text-gray-500 text-sm italic font-light">
-      c) Enter the value to compare:
-    </p>
-    <div v-if="isColumn">
-        <Autocomplete>
 
-        </Autocomplete>
+    <div v-if="isColumn">
+      <Autocomplete :placeholderMsg="valuePlaceHolder">
+
+</Autocomplete>
     </div>
     <div v-else>
       <input
@@ -23,6 +21,8 @@ import Autocomplete from '../ui-utils/Autocomplete.vue';
 export default {
     components:{
         Autocomplete
+    },  props:{
+      valuePlaceHolder: String
     },
     data(){
         return {

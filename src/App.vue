@@ -5,7 +5,10 @@
 </script>
 
 <template>
-  <RouterView />
+  <main class="h-full flex">
+    <aside class="bg-white h-full w-1/6"></aside>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>

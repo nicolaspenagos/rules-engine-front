@@ -6,11 +6,12 @@
     ></div>
     <input
       type="text"
-      class="px-4 py-1 z-10 rounded border border-slate-300 text-gray-800"
+      class="px-4 py-1 z-10 rounded border border-slate-300 text-sm text-gray-800 text-sm"
       v-model="option"
       autocomplete="off"
       @input="filterOptions"
       @focus="modal = true"
+      :placeholder="placeholderMsg"
     />
     <div v-if="filteredOptions && modal" class="z-10">
       <ul class="w-52 text-slate-500 text-sm shadow-lg absolute bg-white">
@@ -27,6 +28,9 @@
   </template>
   <script>
   export default {
+    props: {
+      placeholderMsg: String
+    },
     data() {
       return {
         option: "",

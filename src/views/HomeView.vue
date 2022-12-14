@@ -1,6 +1,5 @@
 <script setup>
-import Column from "../components/expression/Column.vue";
-import Card from "../components/Card.vue";
+import Expression from "../components/Expression.vue";
 </script>
 
 <template>
@@ -8,8 +7,8 @@ import Card from "../components/Card.vue";
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
 
     <div class="flex">
-      <Card> </Card>
-      <Card> </Card>
+
+      <Expression> </Expression>
     </div>
   </main>
 </template>
