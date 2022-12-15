@@ -17,8 +17,13 @@ body {
 
 .p-button {
     height: 35px !important;
+    font-size: small !important;
 }
 
 .expressionConnector {
     margin-top: -15px !important;
+}
+
+.zTop {
+    z-index: 40;
 }

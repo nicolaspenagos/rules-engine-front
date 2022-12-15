@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-import { Expression } from "../../model/Expression";
-import { v4 as generateRandomUUID } from 'uuid';
+export const AND = "And";
+export const OR = "Or"
 
 export const useExpressionsStore = defineStore("expressions", {
     state: () => ({
@@ -11,20 +11,16 @@ export const useExpressionsStore = defineStore("expressions", {
     },
     actions: {
         addExpressionGroup(newExpression, id, index) {
-            if (newExpression == 'And' || newExpression == 'Or') {
-                this.expressions.push(newExpression)
 
-            } else {
+            // If the expression is a logical group connector, I can add it directly
+            if (newExpression == AND || newExpression == OR) return this.expressions.push(newExpression);
 
-                if (this.expressions[index]) {
-                    this.expressions[index].set(id, newExpression);
-                } else {
-                    let expressionGroup = new Map();
-                    expressionGroup.set(id, newExpression);
-                    this.expressions.push(expressionGroup)
-                }
+            // If the expression is a primitive expression, I need to check if the current scope already exists
+            if (this.expressions[index]) return this.expressions[index].set(id, newExpression);
 
-            }
+            // Otherwise I create a new scope and add the new primitive expression
+            let expressionGroup = new Map().set(id, newExpression);;
+            this.expressions.push(expressionGroup)
 
         },
         addExpression(newExpression, id, index) {
@@ -35,13 +31,3 @@ export const useExpressionsStore = defineStore("expressions", {
 
     }
 });
-
-/*
-["AND",
-    {"var1" : "value1"},
-    ["OR",
-        { "var2" : "value2" },
-        { "var3" : "value3" }
-    ]
-]
-*/

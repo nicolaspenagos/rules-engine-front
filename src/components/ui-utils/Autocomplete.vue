@@ -6,15 +6,15 @@
     ></div>
     <input
       type="text"
-      class="px-4 py-1 z-10 rounded border border-slate-300 text-sm text-gray-800 text-sm"
+      class="px-4 py-1 z-10 rounded border border-slate-300 text-xs text-gray-800 text-sm w-44"
       v-model="option"
       autocomplete="off"
       @input="filterOptions"
       @focus="modal = true"
       :placeholder="placeholderMsg"
     />
-    <div v-if="filteredOptions && modal" class="z-10">
-      <ul class="w-52 text-slate-500 text-sm shadow-lg absolute bg-white">
+    <div v-if="filteredOptions && modal" class="z-20">
+      <ul class="w-44 text-slate-500 text-xs shadow-lg absolute bg-white">
         <li
           v-for="(filteredOption, index) in filteredOptions"
           :key="index"

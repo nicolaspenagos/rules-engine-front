@@ -1,5 +1,5 @@
 import { useTableStore } from '@/stores/table/table.js';
-import { assert, beforeEach, describe, expect, it, test } from "vitest";
+import { assert, beforeEach, describe, expect, test } from "vitest";
 import { createPinia, setActivePinia } from 'pinia';
 import { Column, NUMBER, STRING, BOOLEAN } from '@/model/Column.js';
 

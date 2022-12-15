@@ -1,9 +1,20 @@
+export const PRIMITIVE = 'prim';
+export const GREATER = '>';
+export const LOWER = '<';
+export const EQUAL = '=';
+export const DIFFERENT = '≠';
+export const IS_TRUE = 'isTrue';
+export const IS_FALSE = 'isFalse';
+export const AND = 'and';
+export const OR = 'or';
+export const ROOT = 'root';
+
 export class Expression {
-    constructor() {
-        this.column = null;
-        this.operand = null;
-        this.typeValue = null;
-        this.value = null;
-        this.id = null;
+    constructor(expressionBody, expression1, expression2, expression3, expression4) {
+        this.expressionBody = "";
+        this.expression1 = "";
+        this.expression2 = "";
+        this.expression3 = ""
+        this.expression4 = ""
     }
 }

@@ -4,7 +4,7 @@
     </div>
     <input
       type="text"
-      class="px-4 py-1 z-9 rounded border border-slate-300 text-sm text-gray-800 w-24 cursor-pointer"
+      class="px-4 py-1 z-9 rounded border border-slate-300 text-xs text-gray-800 w-24 cursor-pointer"
       v-model="option"
       autocomplete="off"
       readonly
@@ -12,11 +12,11 @@
       placeholder="Operand"
     />
     <div v-if="filteredOption && modal" class="z-9">
-      <ul class="w-24 text-slate-500 text-sm shadow-lg  absolute bg-white">
+      <ul class="w-24 text-slate-500 text-sm shadow-lg  absolute bg-white z-10">
         <li
           v-for="(option, index) in filteredOption"
           :key="index"
-          class="py-2 cursor-pointer px-4 py-1 text-sm rounded hover:bg-gray-100"
+          class="py-2 cursor-pointer px-4 py-1 text-sm rounded hover:bg-gray-100 "
           @click="setOption(option)"
         >
           {{ option }}
