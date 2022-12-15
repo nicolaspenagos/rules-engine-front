@@ -6,7 +6,8 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "test": "vitest"
+        "test": "vitest",
+        "coverage": "vitest run --coverage"
     },
     "dependencies": {
         "pinia": "^2.0.26",
@@ -19,6 +20,8 @@
     "devDependencies": {
         "@pinia/testing": "^0.0.14",
         "@vitejs/plugin-vue": "^3.2.0",
+        "@vitest/coverage-c8": "^0.25.8",
+        "@vitest/coverage-istanbul": "^0.25.8",
         "@vue/test-utils": "^2.0.0-rc.18",
         "autoprefixer": "^10.4.13",
         "jsdom": "^20.0.3",

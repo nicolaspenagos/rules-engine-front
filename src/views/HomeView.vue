@@ -87,12 +87,12 @@ export default {
   },
   methods: {
     addExpressionGroup() {
-      this.expressionsStore.addExpressionGroup(
+      this.expressionsStore.addExpression(
         this.operator,
         generateRandomUUID(),
         this.expressionsStore.expressions.length
       );
-      this.expressionsStore.addExpressionGroup(
+      this.expressionsStore.addExpression(
         "Expx",
         generateRandomUUID(),
         this.expressionsStore.expressions.length
@@ -100,7 +100,7 @@ export default {
     },
   },
   mounted() {
-    this.expressionsStore.addExpressionGroup("Exp1", generateRandomUUID(), 0);
+    this.expressionsStore.addExpression("Exp1", generateRandomUUID(), 0);
   },
   computed: {
     ...mapStores(useExpressionsStore),

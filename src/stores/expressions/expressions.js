@@ -10,7 +10,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
     },
     actions: {
-        addExpressionGroup(newExpression, id, index) {
+        addExpression(newExpression, id, index) {
 
             // If the expression is a logical group connector, I can add it directly
             if (newExpression == AND || newExpression == OR) return this.expressions.push(newExpression);
@@ -23,12 +23,8 @@ export const useExpressionsStore = defineStore("expressions", {
             this.expressions.push(expressionGroup)
 
         },
-        addExpression(newExpression, id, index) {
-            this.expressions[index].set(id, newExpression);
-        },
+
         deleteExpression(id, index) {
-            console.log(this.expressions);
-            console.log(id + ' ' + index);
             this.expressions[index].delete(id);
         }
 
