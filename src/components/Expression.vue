@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-lg  flex flex-row items-left  items-center p-6 pt-7 pb-7 ml-16">
+    <div class="bg-white rounded-lg  flex flex-row items-left  items-center p-6  pt-7 pb-7 ml-16">
 
     
        
@@ -25,7 +25,10 @@ export default {
         Operand,
         Type,
         Value
-    },data(){
+    },
+ 
+    
+    data(){
     return {
         valuePlaceholder:"Value to compare",
  

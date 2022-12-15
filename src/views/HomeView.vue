@@ -14,15 +14,19 @@ import SelectButton from 'primevue/selectbutton';
     <div class="flex flex-col p-10">
       
       <div  v-for="(exp, index) in this.expressionsStore.expressions" :key="index">
-        <div v-if="exp=='And'||exp=='Or'">
-          {{exp}}
+        <div v-if="exp=='And'||exp=='Or'" class="font-semibold bg-indigo-900 rounded-3xl w-20 h-10 flex items-center text-white justify-center relative mt-3 mb-3 z-10 relative">
+          <p class="z-20 text-sm">{{exp}}</p>
+          
+            <div class="bg-indigo-900  w-[1.5px] h-[65px] absolute z-0"></div>
+   
+       
         </div>
-        <ExpressionGroup class="mb-10" v-else>
+        <ExpressionGroup v-else class="z-index10 relative" :expressionIndex="index">
 
         </ExpressionGroup>
       </div>
-      <div class="flex">
-        <div class="bg-indigo-900 w-fit  rounded-3xl shadow-md flex items-center p-4   hover:bg-indigo-700 cursor-pointer" v-on:click="addExpressionGroup">
+      <div class="flex mt-10">
+        <div class="bg-indigo-900 w-fit  rounded-3xl shadow-md flex items-center p-3   hover:bg-indigo-700 cursor-pointer" v-on:click="addExpressionGroup">
           <img src="add.png" class="w-6">
           <p class="font-semibold text-sm ml-1 text-white mr-1">Add New Condition Group</p>
         </div>
@@ -49,12 +53,12 @@ export default {
   methods:{
     addExpressionGroup(){
   
-      this.expressionsStore.addExpression(this.operator, generateRandomUUID(), this.expressionsStore.expressions.length);
-      this.expressionsStore.addExpression("Expx", generateRandomUUID(), this.expressionsStore.expressions.length);
+      this.expressionsStore.addExpressionGroup(this.operator, generateRandomUUID(), this.expressionsStore.expressions.length);
+      this.expressionsStore.addExpressionGroup("Expx", generateRandomUUID(), this.expressionsStore.expressions.length);
     }
   }, mounted(){
 
-    this.expressionsStore.addExpression("Exp1", generateRandomUUID(), 0);
+    this.expressionsStore.addExpressionGroup("Exp1", generateRandomUUID(), 0);
   
 
   },

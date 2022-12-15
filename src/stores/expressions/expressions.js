@@ -10,7 +10,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
     },
     actions: {
-        addExpression(newExpression, id, index) {
+        addExpressionGroup(newExpression, id, index) {
             if (newExpression == 'And' || newExpression == 'Or') {
                 this.expressions.push(newExpression)
 
@@ -27,6 +27,9 @@ export const useExpressionsStore = defineStore("expressions", {
             }
 
         },
+        addExpression(newExpression, id, index) {
+            this.expressions[index].set(id, newExpression);
+        }
 
 
 
