@@ -8,7 +8,7 @@ import { AND, OR } from "../stores/expressions/expressions.js";
 </script>
 
 <template>
-  <main class="w-full min-h-screen flex flex-col p-10 pr-96">
+  <main class="w-full min-h-screen flex flex-col p-10 pr-96 h-full overflow-y-scroll">
 
     <div v-for="(exp, index) in this.expressionsStore.expressions" :key="index">
       <div
@@ -36,13 +36,13 @@ import { AND, OR } from "../stores/expressions/expressions.js";
       </div>
       <ExpressionGroup
         v-else
-        class="z-index10 relative mr-28"
-        :expressionIndex="index"
+        class="z-index10 relative mr-20"
+        :expressionGroupIndex="index"
       >
       </ExpressionGroup>
     </div>
 
-    <div class="flex mt-10">
+    <div class="flex mt-10  mb-12">
       <div
         class="
           bg-indigo-900
@@ -54,6 +54,7 @@ import { AND, OR } from "../stores/expressions/expressions.js";
           p-3
           hover:bg-indigo-700
           cursor-pointer
+         
         "
         v-on:click="addExpressionGroup"
       >

@@ -25,6 +25,11 @@ export const useExpressionsStore = defineStore("expressions", {
         },
         addExpression(newExpression, id, index) {
             this.expressions[index].set(id, newExpression);
+        },
+        deleteExpression(id, index) {
+            console.log(this.expressions);
+            console.log(id + ' ' + index);
+            this.expressions[index].delete(id);
         }
 
 

@@ -16,11 +16,11 @@
     </div>
 
     <main
-      v-for="(exp, index) in this.expressionsStore.expressions[expressionIndex]"
+      v-for="(exp, index) in this.expressionsStore.expressions[expressionGroupIndex]"
       :key="index"
       class=""
     >
-      <Expression></Expression>
+      <Expression :expressionId="exp[0]" :index="index" :expressionGroupIndex="expressionGroupIndex"></Expression>
       <div class="relative">
         <p
           class="
@@ -40,8 +40,8 @@
             expressionConnector
           "
           v-if="
-            index + 1 < this.expressionsStore.expressions[this.expressionIndex].size &&
-            this.expressionsStore.expressions[this.expressionIndex].size > 1
+            index + 1 < this.expressionsStore.expressions[this.expressionGroupIndex].size &&
+            this.expressionsStore.expressions[this.expressionGroupIndex].size > 1
           "
         >
           {{ operator }}
@@ -93,7 +93,7 @@ import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
 export default {
   props: {
-    expressionIndex: Number,
+    expressionGroupIndex: Number,
   },
   components: {
     Expression,
@@ -107,11 +107,10 @@ export default {
       this.expressionsStore.addExpression(
         "Exp1",
         generateRandomUUID(),
-        this.expressionIndex
+        this.expressionGroupIndex
       );
     },
   },
-  mounted() {},
   data() {
     return {
       operator: AND,
@@ -119,5 +118,6 @@ export default {
       expressions: ["Exp1"],
     };
   },
+ 
 };
 </script>

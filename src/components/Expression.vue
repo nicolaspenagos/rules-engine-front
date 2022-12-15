@@ -8,10 +8,11 @@
       p-6
       pt-7
       pb-7
-      ml-16
+      ml-9
     "
   >
-    <Column class="mr-6"> </Column>
+    <RemoveExpressionBtn :expressionId="expressionId" :index="index" :expressionGroupIndex="expressionGroupIndex"></RemoveExpressionBtn>
+    <Column class="mr-6 m"> </Column>
     <Operand class="mr-6"> </Operand>
     <Type class="mr-6" @typeChanged="handleOnTypeChange"> </Type>
     <Value :valuePlaceHolder="valuePlaceholder" class="mr-8"> </Value>
@@ -22,12 +23,19 @@ import Column from "./expression/Column.vue";
 import Operand from "./expression/Operand.vue";
 import Type from "./expression/Type.vue";
 import Value from "./expression/Value.vue";
+import RemoveExpressionBtn from "./ui-utils/RemoveExpressionBtn.vue";
 export default {
   components: {
     Column,
     Operand,
     Type,
     Value,
+    RemoveExpressionBtn
+  },
+  props:{
+    expressionId: String,
+    index: Number,
+    expressionGroupIndex: Number
   },
   data() {
     return {
