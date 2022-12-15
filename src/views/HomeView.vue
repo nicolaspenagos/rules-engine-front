@@ -1,14 +1,18 @@
 <script setup>
 import Expression from "../components/Expression.vue";
+import ExpressionGroup from "../components/ExpressionGroup.vue";
 </script>
 
 <template>
-  <main>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <main class="w-full">
+ 
+  
 
-    <div class="flex">
+    <div class="flex p-10">
+      <ExpressionGroup>
 
-      <Expression> </Expression>
+      </ExpressionGroup>
+
     </div>
   </main>
 </template>

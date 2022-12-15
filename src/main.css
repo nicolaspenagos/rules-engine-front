@@ -7,6 +7,14 @@ body {
     height: 100vh;
 }
 
+.background {
+    background-color: rgb(244, 244, 253);
+}
+
 #app {
     height: 100vh;
+}
+
+.p-button {
+    height: 35px !important;
 }
