@@ -2,31 +2,33 @@ import { defineStore } from "pinia";
 import { Expression } from "../../model/Expression";
 import { v4 as generateRandomUUID } from 'uuid';
 
-const userExpressionStore = defineStore("expressions", {
+export const useExpressionsStore = defineStore("expressions", {
     state: () => ({
-        expressions: new Map()
+        expressions: []
     }),
     getters: {
-        getexpressions: (state) => expressions,
+
     },
     actions: {
-        addExpression(newExpression) {
+        addExpression(newExpression, id, index) {
+            if (newExpression == 'And' || newExpression == 'Or') {
+                this.expressions.push(newExpression)
 
-            if (!newExpression instanceof Expression)
-                throw new Error("Non-expression object received");
+            } else {
 
-            if (typeof newExpression.column === "undefined" || typeof newExpression.operand === "undefined" ||
-                typeof newExpression.typeValue === "undefined" || typeof newExpression.value === "undefined")
-                throw new Error("An expression with undefined parameters received");
+                if (this.expressions[index]) {
+                    this.expressions[index].set(id, newExpression);
+                } else {
+                    let expressionGroup = new Map();
+                    expressionGroup.set(id, newExpression);
+                    this.expressions.push(expressionGroup)
+                }
 
-            const id = generateRandomUUID();
-            newExpression.id = id;
-            this.expressions.set(id, newExpression)
+            }
 
         },
-        getExpression(id) {
-            return this.expressions.get(id);
-        }
+
+
 
     }
 });

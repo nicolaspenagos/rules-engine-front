@@ -8,7 +8,7 @@
     </main>
     <footer class="background rounded-br-xl rounded-bl-xl  flex">
   
-        <div class="bg-white w-fit p-0.5 rounded-3xl shadow-md flex items-center p-[10px] m-6  hover:bg-indigo-100 cursor-pointer">
+        <div class="bg-white w-fit p-0.5 rounded-3xl shadow-md flex items-center p-[10px] m-6  hover:bg-indigo-50 cursor-pointer">
           <img src="add.png" class="w-6">
           <p class="font-semibold text-sm ml-1 text-gray-700 mr-1">Add New Condition</p>
         </div>
@@ -35,7 +35,7 @@ export default {
         return {
             operator: 'Off',
             options: ['And', 'Or'],
-  
+            expressions: ['Exp1']
    
  
            

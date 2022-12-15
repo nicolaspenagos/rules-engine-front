@@ -5,8 +5,8 @@ import InputText from "primevue/inputtext";
 </script>
 
 <template>
-  <main class="h-full flex w-full">
-    <aside class="h-full w-1/12 bg-indigo-900"></aside>
+  <main class=" flex w-full">
+    <aside class=" w-1/12 bg-indigo-900"></aside>
     <div class=" w-full">
       <header class="bg-white w-full h-16 shadow flex items-center pl-10">
       <h1 class="font-semibold text-gray-700">Rule Engine</h1>
