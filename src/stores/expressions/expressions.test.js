@@ -63,5 +63,26 @@ describe('Expressions Store', () => {
         assert.equal("[]", JSON.stringify(Array.from(expressions.expressions[0])));
     });
 
+    test("expressions counter when adding", () => {
+
+        const expressions = useExpressionsStore();
+        expressions.addExpression("Exp", "id1", 0);
+        expressions.addExpression("Exp", "id2", 0);
+        expressions.addExpression("Exp", "id2", 1);
+        expect(expressions.expressionsCounter).toBe(3);
+
+    })
+
+    test("expressions counter when deleting", () => {
+
+        const expressions = useExpressionsStore();
+        expressions.addExpression("Exp", "id1", 0);
+        expressions.addExpression("Exp", "id2", 0);
+        expressions.addExpression("Exp", "id2", 1);
+        expressions.deleteExpression("id2", 0);
+        expect(expressions.expressionsCounter).toBe(2);
+
+    })
+
 
 })

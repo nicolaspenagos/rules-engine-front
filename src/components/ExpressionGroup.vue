@@ -12,15 +12,21 @@
         hover:bg-red-100
       "
     >
-      <img src="trash.png" class="w-5" draggable="false"/>
+      <img v-if="expressionGroupIndex" src="trash.png" class="w-5" draggable="false"  v-on:click="deleteExpressionGroup"/>
     </div>
 
     <main
-      v-for="(exp, index) in this.expressionsStore.expressions[expressionGroupIndex]"
+      v-for="(exp, index) in this.expressionsStore.expressions[
+        expressionGroupIndex
+      ]"
       :key="index"
       class=""
     >
-      <Expression :expressionId="exp[0]" :index="index" :expressionGroupIndex="expressionGroupIndex"></Expression>
+      <Expression
+        :expressionId="exp[0]"
+        :index="index"
+        :expressionGroupIndex="expressionGroupIndex"
+      ></Expression>
       <div class="relative">
         <p
           class="
@@ -40,8 +46,11 @@
             expressionConnector
           "
           v-if="
-            index + 1 < this.expressionsStore.expressions[this.expressionGroupIndex].size &&
-            this.expressionsStore.expressions[this.expressionGroupIndex].size > 1
+            index + 1 <
+              this.expressionsStore.expressions[this.expressionGroupIndex]
+                .size &&
+            this.expressionsStore.expressions[this.expressionGroupIndex].size >
+              1
           "
         >
           {{ operator }}
@@ -64,6 +73,7 @@
           hover:bg-indigo-50
           cursor-pointer
         "
+        :class="disable"
         v-on:click="addExpression"
       >
         <img src="add.png" class="w-6" draggable="false" />
@@ -78,15 +88,25 @@
         aria-labelledby="single"
         class="ml-6 mt-auto mb-auto mr-4"
       />
-      <p class="text-sm mr-auto text-gray-500 mt-auto mb-auto">
-        You can only have one logical operator per group
+      <div v-if="disable!=''" class="mt-auto mb-auto flex justify-center items-center">
+        <div class="font-semibold bg-rose-100 h-4 w-4 rounded-full flex justify-center items-center  text-rose-500">!</div>
+        <p class="text-sm mr-auto text-gray-500 ml-1">
+          You have reached a maximum of 4 expressions per rule
+        </p>
+      </div>
+
+      <p class="text-sm mr-auto text-gray-500 mt-auto mb-auto" v-else>
+        <strong>Tip:</strong> {{tip}}
       </p>
     </footer>
   </div>
 </template>
 <script>
 import { mapStores } from "pinia";
-import { useExpressionsStore } from "../stores/expressions/expressions.js";
+import {
+  useExpressionsStore,
+  EXPRESSIONS_LIMIT,
+} from "../stores/expressions/expressions.js";
 import Expression from "./Expression.vue";
 import SelectButton from "primevue/selectbutton";
 import { v4 as generateRandomUUID } from "uuid";
@@ -101,23 +121,49 @@ export default {
   },
   computed: {
     ...mapStores(useExpressionsStore),
+    disable() {
+      let _class =
+        this.expressionsStore.expressionsCounter >= EXPRESSIONS_LIMIT
+          ? "opacity-40 hover:bg-white cursor-not-allowed"
+          : "";
+      return _class;
+    },
+    tip(){
+      return this.expressionsStore.getTip();
+    }
   },
   methods: {
     addExpression() {
-      this.expressionsStore.addExpression(
-        "Exp1",
-        generateRandomUUID(),
-        this.expressionGroupIndex
-      );
+      if (this.expressionsStore.expressionsCounter < EXPRESSIONS_LIMIT) {
+        this.expressionsStore.addExpression(
+          "Exp1",
+          generateRandomUUID(),
+          this.expressionGroupIndex
+        );
+      } else {
+        this.showAlert();
+      }
     },
+    showAlert() {
+      if (!this.maxLimitMsg) {
+        this.maxLimitMsg = true;
+        setTimeout(() => {
+          this.maxLimitMsg = false;
+        }, 5000);
+      }
+    },
+    deleteExpressionGroup(){
+      this.expressionsStore.deleteExpressionGroup(this.expressionGroupIndex);
+    }
   },
   data() {
     return {
       operator: AND,
       options: [AND, OR],
       expressions: ["Exp1"],
+      maxLimitMsg: false,
+    
     };
   },
- 
 };
 </script>

@@ -5,7 +5,7 @@ export const useTableStore = defineStore("table", {
         columns: []
     }),
     getters: {
-        getColumns: (state) => columns,
+
     },
     actions: {
         addColumn(newColumn) {

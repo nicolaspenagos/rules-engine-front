@@ -1,7 +1,10 @@
 <script setup>
 import ExpressionGroup from "../components/ExpressionGroup.vue";
 import { mapStores } from "pinia";
-import { useExpressionsStore } from "../stores/expressions/expressions.js";
+import {
+  useExpressionsStore,
+  EXPRESSIONS_LIMIT,
+} from "../stores/expressions/expressions.js";
 import SelectButton from "primevue/selectbutton";
 import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
@@ -56,6 +59,7 @@ import { AND, OR } from "../stores/expressions/expressions.js";
           cursor-pointer
          
         "
+        :class="disable"
         v-on:click="addExpressionGroup"
       >
         <img src="add.png" class="w-6" draggable="false"/>
@@ -86,17 +90,23 @@ export default {
     };
   },
   methods: {
+    
     addExpressionGroup() {
-      this.expressionsStore.addExpression(
+      if(this.expressionsStore.expressionsCounter<EXPRESSIONS_LIMIT){
+        this.expressionsStore.addExpression(
         this.operator,
         generateRandomUUID(),
         this.expressionsStore.expressions.length
+        
       );
       this.expressionsStore.addExpression(
         "Expx",
         generateRandomUUID(),
         this.expressionsStore.expressions.length
       );
+      }
+    
+      
     },
   },
   mounted() {
@@ -104,6 +114,13 @@ export default {
   },
   computed: {
     ...mapStores(useExpressionsStore),
+    disable() {
+      let _class =
+        this.expressionsStore.expressionsCounter >= EXPRESSIONS_LIMIT
+          ? "opacity-40 hover:bg-indigo-900 cursor-not-allowed"
+          : "";
+      return _class;
+    }
   },
 };
 </script>

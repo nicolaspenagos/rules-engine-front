@@ -9,7 +9,7 @@ export const AND = 'and';
 export const OR = 'or';
 export const ROOT = 'root';
 
-export class Expression {
+export class Rule {
     constructor(expressionBody, expression1, expression2, expression3, expression4) {
         this.expressionBody = "";
         this.expression1 = "";
