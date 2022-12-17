@@ -1,10 +1,7 @@
 <template>
   <div class="flex flex-col items-start">
-
     <div v-if="isColumn">
-      <Autocomplete :placeholderMsg="valuePlaceHolder">
-
-</Autocomplete>
+      <Autocomplete :placeholderMsg="valuePlaceHolder"> </Autocomplete>
     </div>
     <div v-else>
       <input
@@ -17,18 +14,21 @@
 </template>
   
 <script>
-import Autocomplete from '../ui-utils/Autocomplete.vue';
+import Autocomplete from "../ui-utils/Autocomplete.vue";
 export default {
-    components:{
-        Autocomplete
-    },  props:{
-      valuePlaceHolder: String
-    },
-    data(){
-        return {
-            isColumn: true
-        }
-    }
+  components: {
+    Autocomplete,
+  },
+  props: {
+    valuePlaceHolder: String,
+    expressionId: String,
+    expressionGroupIndex: Number,
+  },
+  data() {
+    return {
+      isColumn: true,
+    };
+  },
 };
 </script>
   

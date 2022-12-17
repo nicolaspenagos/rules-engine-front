@@ -8,6 +8,7 @@ import {
 import SelectButton from "primevue/selectbutton";
 import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
+import {ExpressionModel} from "../model/ExpressionModel.js";
 </script>
 
 <template>
@@ -86,7 +87,7 @@ export default {
       rule: [],
       operator: AND,
       options: [AND, OR],
-      expressions: ["Exp1"],
+      expressions: ["ooo"],
     };
   },
   methods: {
@@ -100,7 +101,7 @@ export default {
         
       );
       this.expressionsStore.addExpression(
-        "Expx",
+        new ExpressionModel(),
         generateRandomUUID(),
         this.expressionsStore.expressions.length
       );
@@ -110,7 +111,7 @@ export default {
     },
   },
   mounted() {
-    this.expressionsStore.addExpression("Exp1", generateRandomUUID(), 0);
+    this.expressionsStore.addExpression(new ExpressionModel(), generateRandomUUID(), 0);
   },
   computed: {
     ...mapStores(useExpressionsStore),

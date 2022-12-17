@@ -29,8 +29,8 @@ import { useExpressionsStore } from "../../stores/expressions/expressions.js";
 export default {
   props: {
     expressionId: String,
-    index: Number,
-    expressionGroupIndex: Number
+    expressionGroupIndex: Number,
+    index: Number
   },
   methods: {
     deleteExpression(){

@@ -28,6 +28,10 @@
 
 <script>
 export default {
+  props: {
+    expressionId: String,
+    expressionGroupIndex: Number,
+  },
   data() {
     return {
       option: '',

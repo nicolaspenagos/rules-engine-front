@@ -111,6 +111,7 @@ import Expression from "./Expression.vue";
 import SelectButton from "primevue/selectbutton";
 import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
+import {ExpressionModel} from "../model/ExpressionModel.js";
 export default {
   props: {
     expressionGroupIndex: Number,
@@ -136,7 +137,7 @@ export default {
     addExpression() {
       if (this.expressionsStore.expressionsCounter < EXPRESSIONS_LIMIT) {
         this.expressionsStore.addExpression(
-          "Exp1",
+          new ExpressionModel(),
           generateRandomUUID(),
           this.expressionGroupIndex
         );
@@ -160,7 +161,7 @@ export default {
     return {
       operator: AND,
       options: [AND, OR],
-      expressions: ["Exp1"],
+      expressions: ["Exp1aaa"],
       maxLimitMsg: false,
     
     };

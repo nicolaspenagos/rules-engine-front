@@ -14,7 +14,7 @@ export class Rule {
         this.expressionBody = "";
         this.expression1 = "";
         this.expression2 = "";
-        this.expression3 = ""
-        this.expression4 = ""
+        this.expression3 = "";
+        this.expression4 = "";
     }
 }

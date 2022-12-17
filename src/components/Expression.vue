@@ -12,10 +12,10 @@
     "
   >
     <RemoveExpressionBtn :expressionId="expressionId" :index="index" :expressionGroupIndex="expressionGroupIndex"></RemoveExpressionBtn>
-    <Column class="mr-6 m"> </Column>
-    <Operand class="mr-6"> </Operand>
-    <Type class="mr-6" @typeChanged="handleOnTypeChange"> </Type>
-    <Value :valuePlaceHolder="valuePlaceholder" class="mr-8"> </Value>
+    <Column :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex" class="mr-6 m"> </Column>
+    <Operand :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex" class="mr-6"> </Operand>
+    <Type :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex"  class="mr-6" @typeChanged="handleOnTypeChange"> </Type>
+    <Value :valuePlaceHolder="valuePlaceholder" :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex"  class="mr-8"> </Value>
   </div>
 </template>
 <script>

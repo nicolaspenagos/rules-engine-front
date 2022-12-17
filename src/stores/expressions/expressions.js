@@ -10,7 +10,7 @@ export const useExpressionsStore = defineStore("expressions", {
         tips: new Tips()
     }),
     getters: {
-        getExpressionsCounter: (state) => expressionsCounter,
+
     },
     actions: {
         addExpression(newExpression, id, index) {
@@ -56,6 +56,10 @@ export const useExpressionsStore = defineStore("expressions", {
 
         returnTip() {
             return this.tips.returnTip();
+        },
+
+        setColumn(index, id, column) {
+            this.expressions[index].get(id).column = column;
         }
 
 
