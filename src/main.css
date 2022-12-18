@@ -28,3 +28,7 @@ body {
 .zTop {
     z-index: 40;
 }
+
+.invalidInputText {
+    color: #E21C47 !important;
+}

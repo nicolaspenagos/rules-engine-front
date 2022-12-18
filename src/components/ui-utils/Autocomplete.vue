@@ -15,6 +15,7 @@
       text-xs text-gray-800 text-sm
       w-44
     "
+    :class="inputValid"
     v-model="option"
     autocomplete="off"
     @input="filterOptions"
@@ -37,6 +38,7 @@
 <script>
 import { mapStores } from "pinia";
 import { useExpressionsStore } from "../../stores/expressions/expressions.js";
+import { useTableStore } from "../../stores/table/table.js";
 export default {
   props: {
     placeholderMsg: String,
@@ -46,7 +48,6 @@ export default {
   data() {
     return {
       option: "",
-      options: ["Name", "Lastame", "Age", "Country", "City"],
       filteredOptions: [],
       modal: false,
     };
@@ -54,7 +55,7 @@ export default {
   methods: {
     filterOptions() {
       this.filteredOptions = this.options.filter((option) => {
-        return option.toLocaleLowerCase().startsWith(this.option.toLowerCase());
+        return option.toLowerCase().startsWith(this.option.toLowerCase());
       });
     },
     setOption(filteredOption) {
@@ -62,23 +63,35 @@ export default {
       this.modal = false;
     },
     setColumn() {
-      this.expressionsStore.setColumn(this.expressionGroupIndex, this.expressionId, this.option);
+      this.expressionsStore.setColumn(
+        this.expressionGroupIndex,
+        this.expressionId,
+        this.option
+      );
     },
   },
   mounted() {
     if (this.option.length == 0) this.filteredOptions = this.options;
-    this.filterOptions();
+    this.filterOptions();   
   },
   computed: {
-    ...mapStores(useExpressionsStore),
+    ...mapStores(useExpressionsStore, useTableStore),
+    options(){
+      return  this.tableStore.getColumnsNames();
+    },
+    inputValid(){
+      return (this.tableStore.isValidColumn(this.option))?'':'invalidInputText';
+    }
   },
-  watch:{
-    option(){
-      if(this.option!=""){
+  watch: {
+    option() {
+      if (this.option != "") {
         this.setColumn();
       }
-    }
-  }
+    },
+  },
 };
 </script>
-  
+
+
+   

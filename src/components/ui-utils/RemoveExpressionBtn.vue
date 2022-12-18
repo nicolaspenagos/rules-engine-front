@@ -39,7 +39,7 @@ export default {
   }, computed: {
     ...mapStores(useExpressionsStore),
   }, mounted(){
-    console.log(this.index)
+
   }
 };
 </script>

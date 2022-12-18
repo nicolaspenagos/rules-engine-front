@@ -60,9 +60,13 @@ export const useExpressionsStore = defineStore("expressions", {
 
         setColumn(index, id, column) {
             this.expressions[index].get(id).column = column;
+        },
+        getCurrentExpression(index, id) {
+            return this.expressions[index].get(id);
+        },
+        setOperand(index, id, operand) {
+            this.expressions[index].get(id).operand = operand;
         }
-
-
 
     }
 });

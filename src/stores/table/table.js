@@ -1,13 +1,16 @@
 import { defineStore } from "pinia";
-import { Column } from "../../model/Column";
+import { Column, NUMBER, STRING } from "../../model/Column";
+import { LOWER, GREATER, EQUAL, DIFFERENT } from '../../model/ExpressionModel';
+import { useExpressionsStore } from "../expressions/expressions";
 export const useTableStore = defineStore("table", {
     state: () => ({
-        columns: []
+        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING)]
     }),
     getters: {
 
     },
     actions: {
+
         addColumn(newColumn) {
 
             if (!newColumn instanceof Column)
@@ -23,6 +26,56 @@ export const useTableStore = defineStore("table", {
             columns.forEach(col => {
                 this.addColumn(col);
             });
+        },
+        isValidColumn(column) {
+            return this.getColumnsNames().includes(column);
+        },
+
+        getOperands(type) {
+
+
+
+            if (type == '')
+                return [];
+
+
+
+            switch (type) {
+                case NUMBER:
+                    console.log('aa');
+                    return [LOWER, EQUAL, GREATER];
+                case STRING:
+                    console.log('bb');
+                    return [EQUAL, DIFFERENT];
+            }
+        },
+        getColumnsNames() {
+            let cols = [];
+            this.columns.forEach((col) => {
+                cols.push(col.name);
+            });
+
+            return cols;
+        },
+
+        getColumnType(columnName) {
+
+            console.log(this.searchByName(columnName));
+            if (columnName != '' && this.searchByName(columnName) != -1)
+                return this.columns[this.searchByName(columnName)].type;
+            return '';
+        },
+        searchByName(columnName) {
+
+            for (let i = 0; i < this.columns.length; i++) {
+                if (this.columns[i].name == columnName) {
+                    return i;
+                }
+            }
+
+            return -1;
         }
+
+
     }
 });

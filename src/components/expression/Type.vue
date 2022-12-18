@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-start">
+  <div class="flex flex-col items-start"     :class="inputValid">
     <div class="flex">
       <RadioButton inputId="type1" name="type" value="Input" v-model="type" />
       <label for="type1" class="text-gray-800 text-xs ml-1">Input value</label>
@@ -15,6 +15,10 @@
   
   <script>
 import RadioButton from "primevue/radiobutton";
+import { mapStores } from "pinia";
+import { useExpressionsStore } from "../../stores/expressions/expressions.js";
+import { useTableStore } from "../../stores/table/table.js";
+
 export default {
   props: {
     expressionId: String,
@@ -33,7 +37,16 @@ export default {
       type: null,
     };
   },
-}; 
+  computed:{
+    ...mapStores(useTableStore, useExpressionsStore),
+    inputValid(){
+
+      let currentExpression = this.expressionsStore.getCurrentExpression(this.expressionGroupIndex, this.expressionId);
+      return (currentExpression.operand=='')?'opacity-25':'';
+
+    }
+  }
+}
 </script>
   
     

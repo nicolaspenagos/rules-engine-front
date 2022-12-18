@@ -26,7 +26,7 @@ export function getValidColumns(selectedColumn, columns) {
 function isValid(selectedColumn, currentColumn) {
 
     if (selectedColumn.name != currentColumn.name && selectedColumn.type == currentColumn.type) {
-        console.log("=====");
+
         return true;
     }
     return false;
