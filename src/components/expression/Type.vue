@@ -18,6 +18,7 @@ import RadioButton from "primevue/radiobutton";
 import { mapStores } from "pinia";
 import { useExpressionsStore } from "../../stores/expressions/expressions.js";
 import { useTableStore } from "../../stores/table/table.js";
+import { IS_FALSE, IS_TRUE } from '../../model/ExpressionModel.js';
 
 export default {
   props: {
@@ -42,7 +43,9 @@ export default {
     inputValid(){
 
       let currentExpression = this.expressionsStore.getCurrentExpression(this.expressionGroupIndex, this.expressionId);
-      return (currentExpression.operand=='')?'opacity-25':'';
+      if(currentExpression.operand=='')
+        this.type=null
+      return (currentExpression.operand==''||currentExpression.operand==IS_TRUE||currentExpression.operand==IS_FALSE)?'disable':'';
 
     }
   }

@@ -44,6 +44,7 @@ export default {
     placeholderMsg: String,
     expressionId: String,
     expressionGroupIndex: Number,
+    isValue: Boolean,
   },
   data() {
     return {
@@ -63,25 +64,32 @@ export default {
       this.modal = false;
     },
     setColumn() {
-      this.expressionsStore.setColumn(
-        this.expressionGroupIndex,
-        this.expressionId,
-        this.option
-      );
+      if (!this.isValue) {
+        this.$emit("columnChanged");
+        this.expressionsStore.setColumn(
+          this.expressionGroupIndex,
+          this.expressionId,
+          this.option
+        );
+      }else{
+        this.expressionsStore.setValue(this.expressionGroupIndex, this.expressionId, this.option);
+      }
     },
   },
   mounted() {
     if (this.option.length == 0) this.filteredOptions = this.options;
-    this.filterOptions();   
+    this.filterOptions();
   },
   computed: {
     ...mapStores(useExpressionsStore, useTableStore),
-    options(){
-      return  this.tableStore.getColumnsNames();
+    options() {
+      return this.tableStore.getColumnsNames();
     },
-    inputValid(){
-      return (this.tableStore.isValidColumn(this.option))?'':'invalidInputText';
-    }
+    inputValid() {
+      return this.tableStore.isValidColumn(this.option)
+        ? ""
+        : "invalidInputText";
+    },
   },
   watch: {
     option() {

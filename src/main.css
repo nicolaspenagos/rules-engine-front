@@ -32,3 +32,8 @@ body {
 .invalidInputText {
     color: #E21C47 !important;
 }
+
+.disable {
+    opacity: 25%;
+    pointer-events: none;
+}

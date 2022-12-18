@@ -4,6 +4,9 @@
       placeholderMsg="Column"
       :expressionId="expressionId"
       :expressionGroupIndex="expressionGroupIndex"
+      :isValue="isValue"
+
+      @columnChanged="handleColumnChanged"
     >
     </Autocomplete>
   </div>
@@ -18,6 +21,12 @@ export default {
   props: {
     expressionId: String,
     expressionGroupIndex: Number,
+    isValue:Boolean
   },
+  methods:{
+    handleColumnChanged(){
+      this.$emit("@columnChanged");
+    }
+  }
 };
 </script>

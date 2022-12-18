@@ -1,23 +1,43 @@
 <template>
   <div class="flex flex-col items-start">
-    <div v-if="filteredOption && modal" class="absolute inset-0" @click="this.modal=false">
-    </div>
+    <div
+      v-if="filteredOption && modal"
+      class="absolute inset-0"
+      @click="this.modal = false"
+    ></div>
     <input
       type="text"
-      class="px-4 py-1 z-9 rounded border border-slate-300 text-xs text-gray-800 w-24 cursor-pointer"
+      class="
+        px-4
+        py-1
+        z-9
+        rounded
+        border border-slate-300
+        text-xs text-gray-800
+        w-24
+        cursor-pointer
+      "
       v-model="option"
       autocomplete="off"
       readonly
-      @focus="modal=true"
+      @focus="modal = true"
       placeholder="Operand"
       :class="inputValid"
     />
-    <div v-if="filteredOption && modal && (inputValid=='')" class="z-9">
-      <ul class="w-24 text-slate-500 text-sm shadow-lg  absolute bg-white z-10">
+    <div v-if="filteredOption && modal && inputValid == ''" class="z-9">
+      <ul class="w-24 text-slate-500 text-sm shadow-lg absolute bg-white z-10">
         <li
           v-for="(option, index) in filteredOption"
           :key="index"
-          class="py-2 cursor-pointer px-4 py-1 text-sm rounded hover:bg-gray-100 "
+          class="
+            py-2
+            cursor-pointer
+            px-4
+            py-1
+            text-sm
+            rounded
+            hover:bg-gray-100
+          "
           @click="setOption(option)"
         >
           {{ option }}
@@ -39,10 +59,10 @@ export default {
   },
   data() {
     return {
-      option: '',
-      options:[],
+      option: "",
+      options: [],
       filteredOption: [],
-      modal:false
+      modal: false,
     };
   },
   methods: {
@@ -52,31 +72,44 @@ export default {
     setOption(option) {
       this.option = option;
       this.modal = false;
-      this.expressionsStore.setOperand(this.expressionGroupIndex, this.expressionId, option)
-    },
 
+      this.expressionsStore.setOperand(
+        this.expressionGroupIndex,
+        this.expressionId,
+        option
+      );
+    },
   },
-  mounted(){
-    if(this.option.length==0)
-        this.filteredOption = this.options;
+  mounted() {
+    if (this.option.length == 0) this.filteredOption = this.options;
     this.filterOptions();
   },
-  computed:{
+  computed: {
     ...mapStores(useTableStore, useExpressionsStore),
-    inputValid(){
+    inputValid() {
 
+      let currentExpression = this.expressionsStore.getCurrentExpression(
+        this.expressionGroupIndex,
+        this.expressionId
+      );
 
-      let currentExpression = this.expressionsStore.getCurrentExpression(this.expressionGroupIndex, this.expressionId);
+      if(currentExpression.operand == ''){
+        this.option = '';
+      }
     
-      this.options = this.tableStore.getOperands(this.tableStore.getColumnType(currentExpression.column));
+      this.options = this.tableStore.getOperands(
+        this.tableStore.getColumnType(currentExpression.column)
+      );
       if (this.option.length == 0) this.filteredOptions = this.options;
-    this.filterOptions();   
-      console.log(this.options)
-      return (this.tableStore.isValidColumn(currentExpression.column))?'':'opacity-25';
+      this.filterOptions();
+     
 
-    }
-
-  }
+  
+      return this.tableStore.isValidColumn(currentExpression.column)
+        ? ""
+        : "disable";
+    },
+  },
 };
 </script>
 

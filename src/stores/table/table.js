@@ -1,10 +1,11 @@
 import { defineStore } from "pinia";
-import { Column, NUMBER, STRING } from "../../model/Column";
+import { BOOLEAN, Column, NUMBER, STRING } from "../../model/Column";
 import { LOWER, GREATER, EQUAL, DIFFERENT } from '../../model/ExpressionModel';
+import { IS_FALSE, IS_TRUE } from "../../model/Rule";
 import { useExpressionsStore } from "../expressions/expressions";
 export const useTableStore = defineStore("table", {
     state: () => ({
-        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING)]
+        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN)]
     }),
     getters: {
 
@@ -42,11 +43,11 @@ export const useTableStore = defineStore("table", {
 
             switch (type) {
                 case NUMBER:
-                    console.log('aa');
                     return [LOWER, EQUAL, GREATER];
                 case STRING:
-                    console.log('bb');
                     return [EQUAL, DIFFERENT];
+                case BOOLEAN:
+                    return [EQUAL, DIFFERENT, IS_FALSE, IS_TRUE];
             }
         },
         getColumnsNames() {
@@ -60,7 +61,6 @@ export const useTableStore = defineStore("table", {
 
         getColumnType(columnName) {
 
-            console.log(this.searchByName(columnName));
             if (columnName != '' && this.searchByName(columnName) != -1)
                 return this.columns[this.searchByName(columnName)].type;
             return '';
