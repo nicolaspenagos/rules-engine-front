@@ -25,7 +25,7 @@
         :placeholder="valuePlaceHolder"
         :type="inputType"
         @change="setValue"
-        v-if="inputType != BOOLEAN"
+        v-if="inputType != 'boolean'"
       />
     </div>
   </div>

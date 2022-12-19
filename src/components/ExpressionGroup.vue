@@ -12,7 +12,7 @@
         hover:bg-red-100
       "
     >
-      <img v-if="expressionGroupIndex" src="trash.png" class="w-5" draggable="false"  v-on:click="deleteExpressionGroup"/>
+      <img v-if="expressionGroupIndex" src="/trash.png" class="w-5" draggable="false"  v-on:click="deleteExpressionGroup"/>
     </div>
 
     <main
@@ -47,9 +47,9 @@
           "
           v-if="
             index + 1 <
-              this.expressionsStore.expressions[this.expressionGroupIndex]
+              expressionsStore.expressions[this.expressionGroupIndex]
                 .size &&
-            this.expressionsStore.expressions[this.expressionGroupIndex].size >
+            expressionsStore.expressions[this.expressionGroupIndex].size >
               1
           "
         >
@@ -76,7 +76,7 @@
         :class="disable"
         v-on:click="addExpression"
       >
-        <img src="add.png" class="w-6" draggable="false" />
+        <img src="/add.png" class="w-6" draggable="false" />
         <p class="font-semibold text-sm ml-1 text-gray-700 mr-1">
           Add New Condition
         </p>

@@ -12,7 +12,7 @@
     "
   >
     <RemoveExpressionBtn :expressionId="expressionId" :index="index" :expressionGroupIndex="expressionGroupIndex"></RemoveExpressionBtn>
-    <Column :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex" class="mr-6 m" :isValue="false"  @columnChanged="handleColumnChanged"> </Column>
+    <Column :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex" class="mr-6 m" :isValue="false" > </Column>
     <Operand :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex" class="mr-6"> </Operand>
     <Type :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex"  class="mr-6" @typeChanged="handleOnTypeChange"> </Type>
     <Value :valuePlaceHolder="valuePlaceholder" :expressionId="expressionId" :expressionGroupIndex="expressionGroupIndex" :isValue="true"  class="mr-8"> </Value>
@@ -46,12 +46,13 @@ export default {
     handleOnTypeChange(type) {
       this.valuePlaceholder = type;
     },
+    /*
     handleColumnChanged(){
       console.log(')))0000000000');
       console.log(this.valuePlaceholder);
       this.valuePlaceholder="Value to compare"
       console.log(this.valuePlaceholder);
-    }
+    }*/
   },
 };
 </script>

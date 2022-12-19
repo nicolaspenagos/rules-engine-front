@@ -14,7 +14,7 @@ import {ExpressionModel} from "../model/ExpressionModel.js";
 <template>
   <main class="w-full min-h-screen flex flex-col p-10 pr-96 h-full overflow-y-scroll">
 
-    <div v-for="(exp, index) in this.expressionsStore.expressions" :key="index">
+    <div v-for="(exp, index) in expressionsStore.expressions" :key="index">
       <div
         v-if="exp == AND || exp == OR"
         class="
@@ -63,7 +63,7 @@ import {ExpressionModel} from "../model/ExpressionModel.js";
         :class="disable"
         v-on:click="addExpressionGroup"
       >
-        <img src="add.png" class="w-6" draggable="false"/>
+        <img src="/add.png" class="w-6" draggable="false"/>
         <p class="font-semibold text-sm ml-1 text-white mr-1">
           Add New Condition Group
         </p>
@@ -76,9 +76,9 @@ import {ExpressionModel} from "../model/ExpressionModel.js";
         class="ml-[15px] mt-auto mb-auto mr-4"
       />
     </div>
-    <Button v-on:click="buildRule">
+    <button v-on:click="buildRule">
       Build Rule
-    </Button>
+    </button>
 
   </main>
 </template>

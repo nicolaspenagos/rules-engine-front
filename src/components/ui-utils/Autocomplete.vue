@@ -65,7 +65,7 @@ export default {
     },
     setColumn() {
       if (!this.isValue) {
-        this.$emit("columnChanged");
+
         this.expressionsStore.setColumn(
           this.expressionGroupIndex,
           this.expressionId,

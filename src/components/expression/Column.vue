@@ -6,7 +6,6 @@
       :expressionGroupIndex="expressionGroupIndex"
       :isValue="isValue"
 
-      @columnChanged="handleColumnChanged"
     >
     </Autocomplete>
   </div>
@@ -24,9 +23,7 @@ export default {
     isValue:Boolean
   },
   methods:{
-    handleColumnChanged(){
-      this.$emit("@columnChanged");
-    }
+    
   }
 };
 </script>
