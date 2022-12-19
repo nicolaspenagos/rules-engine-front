@@ -5,7 +5,7 @@ import { IS_FALSE, IS_TRUE } from "../../model/Rule";
 import { useExpressionsStore } from "../expressions/expressions";
 export const useTableStore = defineStore("table", {
     state: () => ({
-        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN)]
+        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN), new Column("Kilograms", NUMBER)]
     }),
     getters: {
 
@@ -54,6 +54,15 @@ export const useTableStore = defineStore("table", {
             let cols = [];
             this.columns.forEach((col) => {
                 cols.push(col.name);
+            });
+
+            return cols;
+        },
+        getColumnsNamesValue(column) {
+            let cols = [];
+            this.columns.forEach((col) => {
+                if (col.name != column && this.getColumnType(col.name) == this.getColumnType(column))
+                    cols.push(col.name);
             });
 
             return cols;

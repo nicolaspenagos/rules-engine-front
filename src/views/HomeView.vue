@@ -76,6 +76,9 @@ import {ExpressionModel} from "../model/ExpressionModel.js";
         class="ml-[15px] mt-auto mb-auto mr-4"
       />
     </div>
+    <Button v-on:click="buildRule">
+      Build Rule
+    </Button>
 
   </main>
 </template>
@@ -109,6 +112,9 @@ export default {
     
       
     },
+    buildRule(){
+      this.expressionsStore.buildRule();
+    }
   },
   mounted() {
     this.expressionsStore.addExpression(new ExpressionModel(), generateRandomUUID(), 0);

@@ -71,8 +71,12 @@ export default {
           this.expressionId,
           this.option
         );
-      }else{
-        this.expressionsStore.setValue(this.expressionGroupIndex, this.expressionId, this.option);
+      } else {
+        this.expressionsStore.setValue(
+          this.expressionGroupIndex,
+          this.expressionId,
+          this.option
+        );
       }
     },
   },
@@ -83,7 +87,8 @@ export default {
   computed: {
     ...mapStores(useExpressionsStore, useTableStore),
     options() {
-      return this.tableStore.getColumnsNames();
+      if (this.isValue) return this.tableStore.getColumnsNamesValue(this.expressionsStore.expressions[this.expressionGroupIndex].get(this.expressionId).column);
+      else return this.tableStore.getColumnsNames();
     },
     inputValid() {
       return this.tableStore.isValidColumn(this.option)

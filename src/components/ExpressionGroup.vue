@@ -139,7 +139,8 @@ export default {
         this.expressionsStore.addExpression(
           new ExpressionModel(),
           generateRandomUUID(),
-          this.expressionGroupIndex
+          this.expressionGroupIndex,
+          this.operator
         );
       } else {
         this.showAlert();
@@ -166,5 +167,10 @@ export default {
     
     };
   },
+  watch:{
+    operator(){
+      this.expressionsStore.changeExpressionOperator(this.expressionGroupIndex, this.operator);
+    }
+  }
 };
 </script>

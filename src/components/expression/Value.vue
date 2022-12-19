@@ -52,7 +52,8 @@ export default {
       isColumn: true,
       valueType: "text",
       option:"",
-      disable :""
+      disable :"",
+      type:""
     };
   },
   computed: {
@@ -67,9 +68,9 @@ export default {
         this.expressionId
       );
 
-      let type = this.tableStore.getColumnType(currentExpression.column);
-      if (type == STRING) return "text";
-      if (type == NUMBER) return "number";
+      this.type = this.tableStore.getColumnType(currentExpression.column);
+      if (this.type == STRING) return "text";
+      if (this.type == NUMBER) return "number";
       return BOOLEAN;
     },
   },
@@ -80,8 +81,14 @@ export default {
   watch: {
     option() {
       if (this.option != "") {
-     
-        this.expressionsStore.setValue(this.expressionGroupIndex, this.expressionId, this.option);
+       
+        let parsedOption = this.option;
+
+        if(this.type==NUMBER) parsedOption = parseFloat(this.option);
+
+        if(this.type==BOOLEAN) parsedOption = (this.option === 'true');
+        
+        this.expressionsStore.setValue(this.expressionGroupIndex, this.expressionId, parsedOption);
       }
     },
     valuePlaceHolder(){
