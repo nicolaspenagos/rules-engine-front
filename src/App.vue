@@ -1,10 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import SideMenu from "./components/SideMenu.vue";
+import Modal from "./components/Modal.vue"
 </script>
 
 <template>
   <main class="flex h-full w-full">
+    <Modal></Modal>
     <aside class="w-1/12 bg-indigo-900">
       <SideMenu> </SideMenu>
     </aside>

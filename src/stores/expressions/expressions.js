@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { DIFFERENT, EQUAL, GREATER, IS_FALSE, IS_TRUE, LOWER, Rule } from "../../model/Rule";
 import { Tips } from "../../utils/tips/tips";
+
 export const AND = "And";
 export const OR = "Or"
 export const EXPRESSIONS_LIMIT = 4;
@@ -15,7 +16,14 @@ export const useExpressionsStore = defineStore("expressions", {
 
     },
     actions: {
+        clear() {
+            this.expressions = [];
+            this.expressionsCounter = 0;
+            this.tips = new Tips();
+            this.innerConectors = new Map();
+        },
         addExpression(newExpression, id, index) {
+
 
             // If the expression is a logical group connector, I can add it directly
             if (newExpression == AND || newExpression == OR) return this.expressions.push(newExpression);
@@ -26,6 +34,8 @@ export const useExpressionsStore = defineStore("expressions", {
 
             // Otherwise I create a new scope and add the new primitive expression
             let expressionGroup = new Map().set(id, newExpression);
+            console.log('>>>')
+            console.log(this.expressions)
             this.expressions.push(expressionGroup);
 
             this.innerConectors.set(id, AND);
@@ -75,10 +85,6 @@ export const useExpressionsStore = defineStore("expressions", {
                     let innerCounter = 0;
                     for (let [key, value] of current) {
 
-
-
-
-
                         if (value != AND && value != OR) {
                             expressionCounter++;
 
@@ -91,14 +97,8 @@ export const useExpressionsStore = defineStore("expressions", {
                             if (this.innerConectors.has(key)) {
                                 tempMap.set('Exp' + groupCounter, this.innerConectors.get(key))
                             }
-
-
-
-
                         }
-
                         innerCounter++;
-
                     }
 
                     groupCounter++;
@@ -108,11 +108,6 @@ export const useExpressionsStore = defineStore("expressions", {
                     expressionBody += current + ' ';
                 }
 
-
-
-
-
-
             }
             console.log(expressionBody);
             console.log(tempMap);
@@ -121,7 +116,6 @@ export const useExpressionsStore = defineStore("expressions", {
                 expressionBody = expressionBody.replaceAll(key + '$', value);
 
             }
-
 
             console.log(singleExpressions);
             console.log(expressionBody);
@@ -157,19 +151,12 @@ export const useExpressionsStore = defineStore("expressions", {
                     expression = { '==': [exp.column, true] };
                     break;
 
-
-
             }
-
-
-            // expression = JSON.stringify(expression);
-
 
             let isColumn = exp.isColumn;
             return { expression, isColumn }
 
         },
-
 
         getTip() {
             return this.tips.getTip();
@@ -187,13 +174,15 @@ export const useExpressionsStore = defineStore("expressions", {
             currentExpression.operand = '';
             currentExpression.value = '';
 
-
         },
         getCurrentExpression(index, id) {
             return this.expressions[index].get(id);
         },
         setOperand(index, id, operand) {
             this.getCurrentExpression(index, id).operand = operand;
+
+            if (operand == IS_FALSE || operand == IS_TRUE)
+                this.getCurrentExpression(index, id).isColumn = false;
         },
         setValue(index, id, value) {
 
@@ -208,6 +197,31 @@ export const useExpressionsStore = defineStore("expressions", {
         setIsColumn(index, id, isColumn) {
             console.log(index, id, isColumn);
             this.getCurrentExpression(index, id).isColumn = isColumn;
+        },
+        isValidRule() {
+
+            for (let i = 0; i < this.expressions.length; i++) {
+
+                if (this.expressions[i] != AND && this.expressions[i] != OR) {
+
+                    for (let [key, exp] of this.expressions[i]) {
+
+                        if (exp.column == '' || typeof exp.isColumn === 'string' && exp.isColumn == '' || exp.operand == '' || this.value == '') {
+                            console.log(exp);
+                            console.log(exp.column == '');
+                            console.log(exp.isColumn == '');
+                            console.log(exp.operand == '');
+                            console.log(this.value == '');
+                            console.log('>>>>>>');
+                            return false;
+                        }
+                    }
+                }
+
+            }
+
+            return true;
+
         }
 
     }
