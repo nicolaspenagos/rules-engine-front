@@ -5,7 +5,7 @@ import { IS_FALSE, IS_TRUE } from "../../model/Rule";
 import { useExpressionsStore } from "../expressions/expressions";
 export const useTableStore = defineStore("table", {
     state: () => ({
-        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN), new Column("Kilograms", NUMBER)]
+        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN), new Column("Kilograms", NUMBER), new Column('BoOl', BOOLEAN)]
     }),
     getters: {
 

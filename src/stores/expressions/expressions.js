@@ -151,10 +151,10 @@ export const useExpressionsStore = defineStore("expressions", {
                     expression = { '!=': [exp.column, exp.value] };
                     break;
                 case IS_FALSE:
-                    expression = { '==': [exp.column, true] };
+                    expression = { '==': [exp.column, false] };
                     break;
                 case IS_TRUE:
-                    expression = { '==': [exp.column, false] };
+                    expression = { '==': [exp.column, true] };
                     break;
 
 
@@ -165,7 +165,7 @@ export const useExpressionsStore = defineStore("expressions", {
             // expression = JSON.stringify(expression);
 
 
-            let isColumn = false;
+            let isColumn = exp.isColumn;
             return { expression, isColumn }
 
         },
@@ -204,6 +204,10 @@ export const useExpressionsStore = defineStore("expressions", {
                 if (this.innerConectors.has(key))
                     this.innerConectors.set(key, operator);
             }
+        },
+        setIsColumn(index, id, isColumn) {
+            console.log(index, id, isColumn);
+            this.getCurrentExpression(index, id).isColumn = isColumn;
         }
 
     }

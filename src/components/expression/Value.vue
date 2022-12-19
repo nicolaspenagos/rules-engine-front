@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col items-start">
+ 
     <div v-if="valuePlaceHolder == 'Column'">
       <Autocomplete
         :placeholderMsg="valuePlaceHolder"
@@ -25,7 +26,7 @@
         :placeholder="valuePlaceHolder"
         :type="inputType"
         @change="setValue"
-        v-if="inputType != 'boolean'"
+        v-if="inputType != 'boolean'||type==''"
       />
     </div>
   </div>
