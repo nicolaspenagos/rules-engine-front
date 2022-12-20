@@ -185,14 +185,20 @@ export default {
       options: [AND, OR],
       expressions: [],
       maxLimitMsg: false,
+      backUpOperator: AND,
     };
   },
   watch: {
     operator() {
-      this.expressionsStore.changeExpressionOperator(
-        this.expressionGroupIndex,
-        this.operator
-      );
+      if (this.operator == null) {
+        this.operator = this.backUpOperator;
+      } else {
+        this.backUpOperator = this.operator;
+        this.expressionsStore.changeExpressionOperator(
+          this.expressionGroupIndex,
+          this.operator
+        );
+      }
     },
   },
 };

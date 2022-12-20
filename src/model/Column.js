@@ -1,6 +1,6 @@
-export const STRING = "string";
-export const NUMBER = "number";
-export const BOOLEAN = "boolean";
+export const STRING = "varchar";
+export const NUMBER = "int4";
+export const BOOLEAN = "bool";
 
 export class Column {
 

@@ -87,6 +87,7 @@ export default {
   computed: {
     ...mapStores(useExpressionsStore, useTableStore),
     options() {
+  
       if (this.isValue) return this.tableStore.getColumnsNamesValue(this.expressionsStore.expressions[this.expressionGroupIndex].get(this.expressionId).column);
       else return this.tableStore.getColumnsNames();
     },

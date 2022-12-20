@@ -3,9 +3,12 @@ import { BOOLEAN, Column, NUMBER, STRING } from "../../model/Column";
 import { LOWER, GREATER, EQUAL, DIFFERENT } from '../../model/ExpressionModel';
 import { IS_FALSE, IS_TRUE } from "../../model/Rule";
 import { CRUDService, METADATA } from "../../service/CRUDService";
+import { v4 as generateRandomUUID } from "uuid";
 export const useTableStore = defineStore("table", {
     state: () => ({
-        columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN), new Column("Kilograms", NUMBER), new Column('BoOl', BOOLEAN)]
+        //columns: [new Column('Age', NUMBER), new Column('Name', STRING), new Column('Lastame', STRING), new Column('Married', BOOLEAN), new Column("Kilograms", NUMBER), new Column('BoOl', BOOLEAN)]
+        columns: [],
+        id: generateRandomUUID()
     }),
     getters: {
 
@@ -53,11 +56,9 @@ export const useTableStore = defineStore("table", {
                 cols.push(col.name);
             });
 
-            console.log('getColumns');
-            console.log(this.columns);
-            console.log(cols);
-            console.log('/******getColumns');
 
+
+            console.log(this.columns);
             return cols;
         },
         getColumnsNamesValue(column) {
@@ -87,10 +88,10 @@ export const useTableStore = defineStore("table", {
             return -1;
         },
         laodColumns() {
-            console.log('****** COLUMNS LOADED ******');
-            CRUDService.get(METADATA, "data").then(data => {
-                // this.columns = data;
-                console.log(data);
+
+            return CRUDService.get(METADATA, "data").then(data => {
+                return this.columns = data;
+
             })
         }
 

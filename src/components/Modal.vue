@@ -100,7 +100,7 @@ export default {
       this.$emit("closeModal");
     },
     saveRule() {
-      const rule = this.expressionsStore.buildRule();
+      const rule = this.expressionsStore.buildRule(this.ruleName);
       this.closeModal();
     },
   },

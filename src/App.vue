@@ -19,7 +19,7 @@ import { mapStores } from 'pinia';
         <img src="/arrow.png" class="w-3 ml-2" />
         <p class="ml-2 text-gray-700">Building a rule</p>
       </header>
-      <RouterView  class="overflow-y-scroll" @open-modal="openModal"/>
+      <RouterView  class="overflow-y-scroll" @open-modal="openModal" :ruleSavedHide="ruleSavedHide"/>
     </div>
   </main>
 </template>
@@ -27,7 +27,8 @@ import { mapStores } from 'pinia';
 export default{
   data(){
     return {
-      hidden:'hidden'
+      hidden:'hidden',
+      ruleSavedHide:'hidden'
     }
   },
 methods:{
@@ -36,12 +37,12 @@ methods:{
   },
   closeModal(){
     this.hidden = 'hidden';
+    this.ruleSavedHide = '';
+      setTimeout(()=>{this.ruleSavedHide = 'hidden';}, 3000)
+ 
   }
 },
-mounted(){
-  useTableStore().laodColumns();
 
-},
 
 
 };

@@ -37,3 +37,20 @@ body {
     opacity: 25%;
     pointer-events: none;
 }
+
+@keyframes p-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #302E81;
+    }
+    40% {
+        stroke: #6366F1;
+    }
+    66% {
+        stroke: #302E81;
+    }
+    80%,
+    90% {
+        stroke: #6366F1;
+    }
+}

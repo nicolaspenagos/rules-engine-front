@@ -11,6 +11,7 @@ import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
 import { ExpressionModel } from "../model/ExpressionModel.js";
 import Message from "primevue/message";
+import ProgressSpinner from 'primevue/progressspinner';
 </script>
 
 <template>
@@ -24,6 +25,7 @@ import Message from "primevue/message";
       h-full
       overflow-y-scroll
     "
+    v-if="loaded"
   >
     <Modal> </Modal>
     <div v-for="(exp, index) in expressionsStore.expressions" :key="index">
@@ -126,25 +128,44 @@ import Message from "primevue/message";
       </div>
     </div>
     <div
-      class="relative bg-rose-200 w-50 h-16 mr-20 rounded-xl flex items-center     shadow-lg"
-      :class="hide"
+      class="relative bg-rose-200 w-50 h-16 mr-20 rounded-xl flex items-center  mb-4   shadow-lg"
+      :class="hideRuleError"
     >
       <div class="bg-rose-600 w-2 h-full rounded-l-xl"></div>
       <p class="text-rose-600 text-md ml-10">This is not a valid rule</p>
  
     </div>
+
+    <div
+      class="relative bg-green-100 w-50 h-16 mr-20 rounded-xl flex items-center  mb-4   shadow-lg"
+      :class="ruleSavedHide"
+    >
+      <div class="bg-green-500 w-2 h-full rounded-l-xl"></div>
+      <p class="text-green-600 text-md ml-10">Rule successfully saved, you can use it in the rules section</p>
+ 
+    </div>
   </main>
+  <div v-else class="h-full w-full flex flex-col items-center justify-center">
+    <ProgressSpinner/>
+    <h1 class="mb-40 text-gray-900 font-bold text-xl">Loading connection...</h1>
+  </div>
 </template>
 
 <script>
 export default {
+  props:{
+    ruleSavedHide: String
+  },
   data() {
     return {
       rule: [],
       operator: AND,
+      backUpOperator:AND,
       options: [AND, OR],
       expressions: ["ooo"],
-      hide: "hidden",
+      hideRuleError: "hidden",
+      hideRuleSaved:'hidden',
+      loaded:false
     };
   },
   methods: {
@@ -166,10 +187,11 @@ export default {
    
       if (this.expressionsStore.isValidRule())
         this.$emit('openModal');
-        else this.hide = '';
+        else this.hideRuleError = '';
 
-        setTimeout(()=>{this.hide = 'hidden';}, 3000)
+        setTimeout(()=>{this.hideRuleError = 'hidden';}, 3000)
     },
+   
     clear() {
       this.expressionsStore.clear();
       this.expressionsStore.addExpression(
@@ -181,7 +203,9 @@ export default {
   },
   mounted() {
 
- 
+    this.tableStore.laodColumns().then(data=>{
+      this.loaded=true;
+    });
     this.expressionsStore.addExpression(
       new ExpressionModel(),
       generateRandomUUID(),
@@ -196,6 +220,15 @@ export default {
           ? "opacity-40 hover:bg-indigo-900 cursor-not-allowed"
           : "";
       return _class;
+    },
+  },
+  watch: {
+    operator() {
+      if (this.operator == null) {
+        this.operator = this.backUpOperator;
+      } else {
+        this.backUpOperator = this.operator;
+      }
     },
   },
 };

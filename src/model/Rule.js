@@ -10,7 +10,8 @@ export const OR = 'or';
 export const ROOT = 'root';
 
 export class Rule {
-    constructor(expressionBody, expression1, expression2, expression3, expression4) {
+    constructor(ruleName, expressionBody, expression1, expression2, expression3, expression4) {
+        this.ruleName = ruleName;
         this.expressionBody = expressionBody;
         this.expression1 = expression1;
         this.expression2 = expression2;

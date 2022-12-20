@@ -61,7 +61,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
         },
 
-        buildRule() {
+        buildRule(ruleName) {
 
             let expressionBody = '';
             let expressionCounter = 0;
@@ -114,7 +114,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
 
 
-            let rule = new Rule(expressionBody.trim(), JSON.stringify(singleExpressions.get('Exp1')), JSON.stringify(singleExpressions.get('Exp2')), JSON.stringify(singleExpressions.get('Exp3')), JSON.stringify(singleExpressions.get('Exp4')));
+            let rule = new Rule(ruleName.trim(), expressionBody.trim(), JSON.stringify(singleExpressions.get('Exp1')), JSON.stringify(singleExpressions.get('Exp2')), JSON.stringify(singleExpressions.get('Exp3')), JSON.stringify(singleExpressions.get('Exp4')));
 
             alert(JSON.stringify(rule));
         },
