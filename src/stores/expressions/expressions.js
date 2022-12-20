@@ -3,7 +3,8 @@ import { DIFFERENT, EQUAL, GREATER, IS_FALSE, IS_TRUE, LOWER, Rule } from "../..
 import { Tips } from "../../utils/tips/tips";
 
 export const AND = "And";
-export const OR = "Or"
+export const OR = "Or";
+export const EXP = "exp";
 export const EXPRESSIONS_LIMIT = 4;
 export const useExpressionsStore = defineStore("expressions", {
     state: () => ({
@@ -84,14 +85,14 @@ export const useExpressionsStore = defineStore("expressions", {
                         if (value != AND && value != OR) {
                             expressionCounter++;
 
-                            expressionBody += 'Exp' + expressionCounter + ' ';
-                            singleExpressions.set('Exp' + expressionCounter, this.builSingleExpression(value))
+                            expressionBody += EXP + expressionCounter + ' ';
+                            singleExpressions.set(EXP + expressionCounter, this.builSingleExpression(value))
                             if (innerCounter + 1 < current.size)
-                                expressionBody += 'Exp' + groupCounter + '$ ';
+                                expressionBody += EXP + groupCounter + '$ ';
 
 
                             if (this.innerConectors.has(key)) {
-                                tempMap.set('Exp' + groupCounter, this.innerConectors.get(key))
+                                tempMap.set(EXP + groupCounter, this.innerConectors.get(key))
                             }
                         }
                         innerCounter++;
@@ -114,9 +115,9 @@ export const useExpressionsStore = defineStore("expressions", {
 
 
 
-            let rule = new Rule(ruleName.trim(), expressionBody.trim(), JSON.stringify(singleExpressions.get('Exp1')), JSON.stringify(singleExpressions.get('Exp2')), JSON.stringify(singleExpressions.get('Exp3')), JSON.stringify(singleExpressions.get('Exp4')));
-
-            alert(JSON.stringify(rule));
+            let rule = new Rule(ruleName.trim(), expressionBody.trim(), JSON.stringify(singleExpressions.get(EXP + '1')), JSON.stringify(singleExpressions.get(EXP + '2')), JSON.stringify(singleExpressions.get(EXP + '3')), JSON.stringify(singleExpressions.get(EXP + 4)));
+            console.log(JSON.stringify(rule));
+            return rule;
         },
 
         builSingleExpression(exp) {

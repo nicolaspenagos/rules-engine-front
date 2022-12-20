@@ -21,7 +21,7 @@ import ProgressSpinner from 'primevue/progressspinner';
       min-h-screen
       flex flex-col
       p-10
-      pr-96
+      pr-80
       h-full
       overflow-y-scroll
     "

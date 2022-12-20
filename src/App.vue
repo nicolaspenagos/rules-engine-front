@@ -5,12 +5,13 @@ import Modal from "./components/Modal.vue";
 import { useTableStore } from "./stores/table/table";
 import { mapStores } from 'pinia';
 
+
 </script>
 
 <template>
   <main class="flex h-full w-full">
     <Modal :class="hidden" @close-modal="closeModal"></Modal>
-    <aside class="w-1/12 bg-indigo-900">
+    <aside class=" bg-indigo-900">
       <SideMenu> </SideMenu>
     </aside>
     <div class="h-full w-full">
