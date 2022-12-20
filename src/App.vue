@@ -6,7 +6,7 @@ import Modal from "./components/Modal.vue"
 
 <template>
   <main class="flex h-full w-full">
-    <Modal></Modal>
+    <Modal :class="hidden" @close-modal="closeModal"></Modal>
     <aside class="w-1/12 bg-indigo-900">
       <SideMenu> </SideMenu>
     </aside>
@@ -16,10 +16,29 @@ import Modal from "./components/Modal.vue"
         <img src="/arrow.png" class="w-3 ml-2" />
         <p class="ml-2 text-gray-700">Building a rule</p>
       </header>
-      <RouterView  class="overflow-y-scroll" />
+      <RouterView  class="overflow-y-scroll" @open-modal="openModal"/>
     </div>
   </main>
 </template>
+<script>
+export default{
+  data(){
+    return {
+      hidden:'hidden'
+    }
+  },
+methods:{
+  openModal(){
+    this.hidden = '';
+  },
+  closeModal(){
+    this.hidden = 'hidden';
+  }
+}
+
+};
+</script>
+
 
 <style scoped>
 </style>

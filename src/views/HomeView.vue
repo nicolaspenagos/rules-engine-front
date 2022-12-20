@@ -125,29 +125,12 @@ import Message from "primevue/message";
       </div>
     </div>
     <div
-      class="relative bg-rose-200 w-50 h-16 mr-20 rounded-xl flex items-center"
+      class="relative bg-rose-200 w-50 h-16 mr-20 rounded-xl flex items-center     shadow-lg"
       :class="hide"
     >
       <div class="bg-rose-600 w-2 h-full rounded-l-xl"></div>
       <p class="text-rose-600 text-md ml-10">This is not a valid rule</p>
-      <div
-        class="
-          text-rose-600 text-sm
-          ml-auto
-          mr-10
-          hover:bg-rose-50
-          cursor-pointer
-          rounded-3xl
-          flex
-          w-6
-          h-6
-          items-center
-          justify-center
-        "
-        v-on:click="hide = 'hidden'"
-      >
-        X
-      </div>
+ 
     </div>
   </main>
 </template>
@@ -181,8 +164,10 @@ export default {
     buildRule() {
    
       if (this.expressionsStore.isValidRule())
-        this.expressionsStore.buildRule();
+        this.$emit('openModal');
         else this.hide = '';
+
+        setTimeout(()=>{this.hide = 'hidden';}, 3000)
     },
     clear() {
       this.expressionsStore.clear();
