@@ -207,12 +207,6 @@ export const useExpressionsStore = defineStore("expressions", {
                     for (let [key, exp] of this.expressions[i]) {
 
                         if (exp.column == '' || typeof exp.isColumn === 'string' && exp.isColumn == '' || exp.operand == '' || this.value == '') {
-                            console.log(exp);
-                            console.log(exp.column == '');
-                            console.log(exp.isColumn == '');
-                            console.log(exp.operand == '');
-                            console.log(this.value == '');
-                            console.log('>>>>>>');
                             return false;
                         }
                     }
