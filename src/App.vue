@@ -1,7 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import SideMenu from "./components/SideMenu.vue";
-import Modal from "./components/Modal.vue"
+import Modal from "./components/Modal.vue";
+import { useTableStore } from "./stores/table/table";
+import { mapStores } from 'pinia';
+
 </script>
 
 <template>
@@ -34,7 +37,12 @@ methods:{
   closeModal(){
     this.hidden = 'hidden';
   }
-}
+},
+mounted(){
+  useTableStore().laodColumns();
+
+},
+
 
 };
 </script>

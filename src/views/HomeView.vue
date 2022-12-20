@@ -5,6 +5,7 @@ import {
   useExpressionsStore,
   EXPRESSIONS_LIMIT,
 } from "../stores/expressions/expressions.js";
+import { useTableStore } from "../stores/table/table";
 import SelectButton from "primevue/selectbutton";
 import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
@@ -179,6 +180,8 @@ export default {
     },
   },
   mounted() {
+
+ 
     this.expressionsStore.addExpression(
       new ExpressionModel(),
       generateRandomUUID(),
@@ -186,7 +189,7 @@ export default {
     );
   },
   computed: {
-    ...mapStores(useExpressionsStore),
+    ...mapStores(useExpressionsStore, useTableStore),
     disable() {
       let _class =
         this.expressionsStore.expressionsCounter >= EXPRESSIONS_LIMIT

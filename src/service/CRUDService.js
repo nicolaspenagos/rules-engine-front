@@ -4,28 +4,28 @@ export const METADATA = 'metadata';
 export const RULES = 'rules'
 export const EVALUATE = 'rules/eval'
 
-export class CRUDService{
+export class CRUDService {
 
     static baseUrl = 'http://localhost:8080/';
 
-    
+
     static getExtraInfo(serviceRoute, itemId) {
 
         const url = this.baseUrl + serviceRoute + '/' + itemId
-        
+
         return axios.get(
             url
         ).then(res => res.data);
-    }  
+    }
 
-    static get(serviceRoute) {
+    static get(serviceRoute, item) {
 
-        const url = this.baseUrl + serviceRoute + '/' + itemId
-        
+        const url = this.baseUrl + serviceRoute + '/' + item;
+
         return axios.get(
             url
         ).then(res => res.data);
-    }  
+    }
 
     static post(newItem, serviceRoute) {
 
