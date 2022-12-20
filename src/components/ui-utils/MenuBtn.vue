@@ -1,5 +1,5 @@
 <template>
-    <div class="text-white text-sm flex  items-center mb-2 opacity-50 mr-auto ml-3 p-2 w-40 rounded-xl pl-2 hover:bg-indigo-50/25 cursor-pointer" :class="selected">
+    <div class="" :class="selected">
 
         <img :src="imgPath"  :class="customClass" draggable="false">
         <p>{{ btnText }}</p>
@@ -10,7 +10,8 @@ export default {
     props:{
         btnText:String,
         selected:String,
-        imgPath:String
+        imgPath:String,
+    
     },
     data(){
         return {

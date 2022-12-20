@@ -4,9 +4,10 @@
             <img src="/perficient.png" class="w-20" draggable="false">
         </div>
 
-        <MenuBtn btnText="About" :imgPath="img1"  :selected="selectedClass1"></MenuBtn>
-        <MenuBtn btnText="Build rule"  :imgPath="img2" :selected="selectedClass2"></MenuBtn>
-        <MenuBtn btnText="Evaluate"  :imgPath="img3"  :selected="selectedClass1"></MenuBtn>
+        <!--  <MenuBtn btnText="About" :imgPath="img1"  :selected="selectedClass1"></MenuBtn>-->
+      
+        <MenuBtn btnText="Build rule"  :imgPath="img2" :selected="selectedClass"></MenuBtn>
+        <MenuBtn btnText="Evaluate"  :imgPath="img3"  :selected="noSelectedClass"></MenuBtn>
     </aside>
 </template>
 <script>
@@ -17,7 +18,8 @@ export default{
     },
     data(){
         return {
-            selectedClass2: "bg-indigo-50/75 text-indigo-900 font-semibold hover:bg-indigo-50/75",
+            noSelectedClass:"hover:bg-indigo-50/25 text-white text-sm flex  items-center mb-2 opacity-50 mr-auto ml-3 p-2 w-40 rounded-xl pl-2  cursor-pointer",
+            selectedClass: "text-indigo-900 font-semibold hover:bg-indigo-50/75  bg-indigo-50/75 text-white text-sm flex  items-center mb-2 opacity-50 mr-auto ml-3 p-2 w-40 rounded-xl pl-2  cursor-pointer",
             img1:"../about-white.png",
             img2:"../build.png",
             img3:"../evaluate-white.png"
