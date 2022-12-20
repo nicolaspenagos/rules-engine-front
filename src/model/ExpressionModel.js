@@ -7,10 +7,12 @@ export const IS_FALSE = 'is False';
 export const ROOT = 'root';
 
 export class ExpressionModel {
+
     constructor() {
         this.column = '';
         this.operand = '';
         this.isColumn = '';
         this.value = '';
     }
+
 }

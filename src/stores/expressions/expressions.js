@@ -34,8 +34,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
             // Otherwise I create a new scope and add the new primitive expression
             let expressionGroup = new Map().set(id, newExpression);
-            console.log('>>>')
-            console.log(this.expressions)
+
             this.expressions.push(expressionGroup);
 
             this.innerConectors.set(id, AND);
@@ -60,8 +59,6 @@ export const useExpressionsStore = defineStore("expressions", {
             this.expressionsCounter -= this.expressions[index].size;
             this.expressions.splice(index - 1, index);
 
-
-
         },
 
         buildRule() {
@@ -78,8 +75,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
 
                 if (current != AND && current != OR) {
-                    console.log(current);
-                    let operatorKey = '';
+
                     expressionBody += '( '
 
                     let innerCounter = 0;
@@ -109,20 +105,16 @@ export const useExpressionsStore = defineStore("expressions", {
                 }
 
             }
-            console.log(expressionBody);
-            console.log(tempMap);
+
             for (let [key, value] of tempMap) {
-                console.log(key, value);
+
                 expressionBody = expressionBody.replaceAll(key + '$', value);
 
             }
 
-            console.log(singleExpressions);
-            console.log(expressionBody);
+
 
             let rule = new Rule(expressionBody.trim(), JSON.stringify(singleExpressions.get('Exp1')), JSON.stringify(singleExpressions.get('Exp2')), JSON.stringify(singleExpressions.get('Exp3')), JSON.stringify(singleExpressions.get('Exp4')));
-            console.log(rule);
-            console.log(JSON.stringify(rule));
 
             alert(JSON.stringify(rule));
         },
@@ -195,7 +187,6 @@ export const useExpressionsStore = defineStore("expressions", {
             }
         },
         setIsColumn(index, id, isColumn) {
-            console.log(index, id, isColumn);
             this.getCurrentExpression(index, id).isColumn = isColumn;
         },
         isValidRule() {

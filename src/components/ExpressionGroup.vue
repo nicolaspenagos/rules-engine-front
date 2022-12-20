@@ -12,7 +12,13 @@
         hover:bg-red-100
       "
     >
-      <img v-if="expressionGroupIndex" src="/trash.png" class="w-5" draggable="false"  v-on:click="deleteExpressionGroup"/>
+      <img
+        v-if="expressionGroupIndex"
+        src="/trash.png"
+        class="w-5"
+        draggable="false"
+        v-on:click="deleteExpressionGroup"
+      />
     </div>
 
     <main
@@ -47,10 +53,8 @@
           "
           v-if="
             index + 1 <
-              expressionsStore.expressions[this.expressionGroupIndex]
-                .size &&
-            expressionsStore.expressions[this.expressionGroupIndex].size >
-              1
+              expressionsStore.expressions[this.expressionGroupIndex].size &&
+            expressionsStore.expressions[this.expressionGroupIndex].size > 1
           "
         >
           {{ operator }}
@@ -88,15 +92,32 @@
         aria-labelledby="single"
         class="ml-6 mt-auto mb-auto mr-4"
       />
-      <div v-if="disable!=''" class="mt-auto mb-auto flex justify-center items-center">
-        <div class="font-semibold bg-rose-100 h-4 w-4 rounded-full flex justify-center items-center  text-rose-500">!</div>
+      <div
+        v-if="disable != ''"
+        class="mt-auto mb-auto flex justify-center items-center"
+      >
+        <div
+          class="
+            font-semibold
+            bg-rose-100
+            h-4
+            w-4
+            rounded-full
+            flex
+            justify-center
+            items-center
+            text-rose-500
+          "
+        >
+          !
+        </div>
         <p class="text-sm mr-auto text-gray-500 ml-1">
           You have reached a maximum of 4 expressions per rule
         </p>
       </div>
 
       <p class="text-sm mr-auto text-gray-500 mt-auto mb-auto" v-else>
-        <strong>Tip:</strong> {{tip}}
+        <strong>Tip:</strong> {{ tip }}
       </p>
     </footer>
   </div>
@@ -111,7 +132,7 @@ import Expression from "./Expression.vue";
 import SelectButton from "primevue/selectbutton";
 import { v4 as generateRandomUUID } from "uuid";
 import { AND, OR } from "../stores/expressions/expressions.js";
-import {ExpressionModel} from "../model/ExpressionModel.js";
+import { ExpressionModel } from "../model/ExpressionModel.js";
 export default {
   props: {
     expressionGroupIndex: Number,
@@ -129,9 +150,9 @@ export default {
           : "";
       return _class;
     },
-    tip(){
+    tip() {
       return this.expressionsStore.getTip();
-    }
+    },
   },
   methods: {
     addExpression() {
@@ -154,23 +175,25 @@ export default {
         }, 5000);
       }
     },
-    deleteExpressionGroup(){
+    deleteExpressionGroup() {
       this.expressionsStore.deleteExpressionGroup(this.expressionGroupIndex);
-    }
+    },
   },
   data() {
     return {
       operator: AND,
       options: [AND, OR],
-      expressions: ["Exp1aaa"],
+      expressions: [],
       maxLimitMsg: false,
-    
     };
   },
-  watch:{
-    operator(){
-      this.expressionsStore.changeExpressionOperator(this.expressionGroupIndex, this.operator);
-    }
-  }
+  watch: {
+    operator() {
+      this.expressionsStore.changeExpressionOperator(
+        this.expressionGroupIndex,
+        this.operator
+      );
+    },
+  },
 };
 </script>

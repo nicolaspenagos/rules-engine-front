@@ -5,14 +5,12 @@
       :expressionId="expressionId"
       :expressionGroupIndex="expressionGroupIndex"
       :isValue="isValue"
-
     >
     </Autocomplete>
   </div>
 </template>
 <script>
 import Autocomplete from "../ui-utils/Autocomplete.vue";
-
 export default {
   components: {
     Autocomplete,
@@ -20,10 +18,7 @@ export default {
   props: {
     expressionId: String,
     expressionGroupIndex: Number,
-    isValue:Boolean
+    isValue: Boolean,
   },
-  methods:{
-    
-  }
 };
 </script>

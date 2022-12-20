@@ -102,10 +102,10 @@ export default {
     saveRule() {
       const rule = this.expressionsStore.buildRule();
       this.closeModal();
-    }
-  },computed:{
-    ...mapStores(useExpressionsStore)
-  }
-  
+    },
+  },
+  computed: {
+    ...mapStores(useExpressionsStore),
+  },
 };
 </script>

@@ -87,24 +87,22 @@ export default {
   computed: {
     ...mapStores(useTableStore, useExpressionsStore),
     inputValid() {
-
       let currentExpression = this.expressionsStore.getCurrentExpression(
         this.expressionGroupIndex,
         this.expressionId
       );
 
-      if(currentExpression.operand == ''){
-        this.option = '';
+      if (currentExpression.operand == "") {
+        this.option = "";
       }
-    
+
       this.options = this.tableStore.getOperands(
         this.tableStore.getColumnType(currentExpression.column)
       );
+
       if (this.option.length == 0) this.filteredOptions = this.options;
       this.filterOptions();
-     
 
-  
       return this.tableStore.isValidColumn(currentExpression.column)
         ? ""
         : "disable";

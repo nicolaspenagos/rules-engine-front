@@ -12,8 +12,7 @@
     </div>
   </div>
 </template>
-  
-  <script>
+<script>
 import RadioButton from "primevue/radiobutton";
 import { mapStores } from "pinia";
 import { useExpressionsStore } from "../../stores/expressions/expressions.js";
@@ -32,7 +31,7 @@ export default {
   watch: {
     type() {
       this.$emit("typeChanged", this.type);
-      console.log(this.type);
+  
       let isColumn = this.type == "Column";
       this.expressionsStore.setIsColumn(
         this.expressionGroupIndex,

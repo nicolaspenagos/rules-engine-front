@@ -1,15 +1,14 @@
-//Valid column data types
 export const STRING = "string";
 export const NUMBER = "number";
 export const BOOLEAN = "boolean";
 
 export class Column {
+
     constructor(name, type) {
 
         this.validateParams(name, type);
         this.name = name;
         this.type = type;
-
 
     }
 
@@ -23,4 +22,5 @@ export class Column {
         }
 
     }
+
 }

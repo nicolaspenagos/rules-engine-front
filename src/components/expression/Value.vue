@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col items-start">
- 
     <div v-if="valuePlaceHolder == 'Column'">
       <Autocomplete
         :placeholderMsg="valuePlaceHolder"
@@ -26,7 +25,7 @@
         :placeholder="valuePlaceHolder"
         :type="inputType"
         @change="setValue"
-        v-if="inputType != 'boolean'||type==''"
+        v-if="inputType != 'boolean' || type == ''"
       />
     </div>
   </div>
@@ -52,15 +51,14 @@ export default {
     return {
       isColumn: true,
       valueType: "text",
-      option:"",
-      disable :"",
-      type:""
+      option: "",
+      disable: "",
+      type: "",
     };
   },
   computed: {
     ...mapStores(useTableStore, useExpressionsStore),
     inputValid() {
-
       return this.valuePlaceHolder == "Value to compare" ? "disable" : "";
     },
     inputType() {
@@ -76,28 +74,27 @@ export default {
     },
   },
 
-  mounted() {
-
-  },
+  mounted() {},
   watch: {
     option() {
       if (this.option != "") {
-       
         let parsedOption = this.option;
 
-        if(this.type==NUMBER) parsedOption = parseFloat(this.option);
+        if (this.type == NUMBER) parsedOption = parseFloat(this.option);
 
-        if(this.type==BOOLEAN) parsedOption = (this.option === 'true');
-        
-        this.expressionsStore.setValue(this.expressionGroupIndex, this.expressionId, parsedOption);
+        if (this.type == BOOLEAN) parsedOption = this.option === "true";
+
+        this.expressionsStore.setValue(
+          this.expressionGroupIndex,
+          this.expressionId,
+          parsedOption
+        );
       }
     },
-    valuePlaceHolder(){
-     // this.inputValid = false;
-
-     this.option = '';
-     this.inputType = 'opacity-25'
-    }
+    valuePlaceHolder() {
+      this.option = "";
+      this.inputType = "opacity-25";
+    },
   },
 };
 </script>
