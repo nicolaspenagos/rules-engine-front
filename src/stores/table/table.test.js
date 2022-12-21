@@ -23,7 +23,7 @@ describe('Table Store', () => {
 
     test("add column", () => {
         const table = useTableStore();
-        table.addColumn(new Column("name", "string"));
+        table.addColumn(new Column("name", "varchar"));
         expect(table.columns.length).toBe(1);
     });
 
