@@ -19,7 +19,7 @@ export default {
         }
     },
     mounted(){
-        console.log(this.imgPath)
+
         if(this.btnText=='Evaluate'){
             this.customClass = 'w-8 mr-2 ml-1';
         }

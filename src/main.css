@@ -1,56 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-body {
-    background-color: rgb(244, 244, 253);
-    height: 100%;
-    overflow-y: hidden;
-}
-
-.background {
-    background-color: rgb(244, 244, 253);
-}
-
-#app {
-    height: 100vh;
-}
-
-.p-button {
-    height: 35px !important;
-    font-size: small !important;
-}
-
-.expressionConnector {
-    margin-top: -15px !important;
-}
-
-.zTop {
-    z-index: 40;
-}
-
-.invalidInputText {
-    color: #E21C47 !important;
-}
-
-.disable {
-    opacity: 25%;
-    pointer-events: none;
-}
-
-@keyframes p-progress-spinner-color {
-    100%,
-    0% {
-        stroke: #302E81;
-    }
-    40% {
-        stroke: #6366F1;
-    }
-    66% {
-        stroke: #302E81;
-    }
-    80%,
-    90% {
-        stroke: #6366F1;
-    }
-}
+ @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;600&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap');
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ body {
+     background-color: rgb(244, 244, 253);
+     height: 100%;
+     overflow-y: hidden;
+ }
+ 
+ .background {
+     background-color: rgb(244, 244, 253);
+ }
+ 
+ #app {
+     height: 100vh;
+ }
+ 
+ .p-button {
+     height: 35px !important;
+     font-size: small !important;
+ }
+ 
+ .expressionConnector {
+     margin-top: -15px !important;
+ }
+ 
+ .zTop {
+     z-index: 40;
+ }
+ 
+ .invalidInputText {
+     color: #E21C47 !important;
+ }
+ 
+ .disable {
+     opacity: 25%;
+     pointer-events: none;
+ }
+ 
+ @keyframes p-progress-spinner-color {
+     100%,
+     0% {
+         stroke: #302E81;
+     }
+     40% {
+         stroke: #6366F1;
+     }
+     66% {
+         stroke: #302E81;
+     }
+     80%,
+     90% {
+         stroke: #6366F1;
+     }
+ }

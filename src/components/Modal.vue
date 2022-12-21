@@ -102,7 +102,7 @@ export default {
     },
     saveRule() {
       const rule = this.expressionsStore.buildRule(this.ruleName);
-      console.log(CRUDService.post(rule, RULES));
+      CRUDService.post(rule, RULES);
       
       this.closeModal();
     },

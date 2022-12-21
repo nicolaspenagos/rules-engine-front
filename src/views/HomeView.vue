@@ -21,7 +21,7 @@ import ProgressSpinner from 'primevue/progressspinner';
       min-h-screen
       flex flex-col
       p-10
-      pr-80
+      pr-60
       h-full
       overflow-y-scroll
     "
@@ -147,7 +147,11 @@ import ProgressSpinner from 'primevue/progressspinner';
   </main>
   <div v-else class="h-full w-full flex flex-col items-center justify-center">
     <ProgressSpinner/>
-    <h1 class="mb-40 text-gray-900 font-bold text-xl">Loading connection...</h1>
+    <!--
+ <h1 class="mb-40 text-gray-900 font-bold text-xl">Loading connection...</h1>
+
+    -->
+   
   </div>
 </template>
 

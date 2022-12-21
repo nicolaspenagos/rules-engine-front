@@ -58,7 +58,7 @@ export const useTableStore = defineStore("table", {
 
 
 
-            console.log(this.columns);
+
             return cols;
         },
         getColumnsNamesValue(column) {

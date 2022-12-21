@@ -120,7 +120,7 @@ export const useExpressionsStore = defineStore("expressions", {
 
 
             let rule = new Rule(ruleName.trim(), expressionBody.trim(), JSON.stringify(singleExpressions.get(EXP + '1')), JSON.stringify(singleExpressions.get(EXP + '2')), JSON.stringify(singleExpressions.get(EXP + '3')), JSON.stringify(singleExpressions.get(EXP + 4)));
-            console.log(JSON.stringify(rule));
+
             return rule;
         },
 
