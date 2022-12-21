@@ -76,7 +76,7 @@ import Row from "primevue/row";
           <Column field="isEmployee" header="isEmployee"></Column>
           <Column field="Address" header="Address"></Column>
           <Column field="Married" header="Married"></Column>
-          <Column field="Age" header="Quantity"></Column>
+          <Column field="Age" header="Age"></Column>
           <Column field="Kilograms" header="Kilograms"></Column>
           <Column field="NumberOfChildren" header="NumberOfChildren"></Column>
           <Column field="Name" header="Name"></Column>
@@ -129,8 +129,10 @@ export default {
     });
     },
     deleteRule(ruleId){
-      alert(ruleId);
-      this.getRules();
+      CRUDService.deleteRule(RULES, ruleId).then(()=>{
+        this.getRules();
+      });
+     
     }
   },
 };

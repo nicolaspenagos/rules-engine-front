@@ -52,4 +52,9 @@ export class CRUDService {
 
     }
 
+    static deleteRule(serviceRoute, itemId) {
+        const url = this.baseUrl + serviceRoute + '/' + itemId
+        return axios.delete(url).then(res => res.status);
+    }
+
 }
