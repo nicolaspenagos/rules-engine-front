@@ -22,6 +22,8 @@ export const useExpressionsStore = defineStore("expressions", {
             this.expressionsCounter = 0;
             this.tips = new Tips();
             this.innerConectors = new Map();
+
+
         },
         addExpression(newExpression, id, index) {
 
@@ -39,6 +41,8 @@ export const useExpressionsStore = defineStore("expressions", {
             this.expressions.push(expressionGroup);
 
             this.innerConectors.set(id, AND);
+
+
 
 
 
