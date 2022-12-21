@@ -11,10 +11,10 @@ import { useRouter, useRoute } from 'vue-router';
 <template>
   <main class="flex h-full w-full">
     <Modal :class="hidden" @close-modal="closeModal"></Modal>
-    <aside class=" bg-indigo-900">
+    <aside class=" bg-indigo-900 h-full">
       <SideMenu @on-view-changed="(txt)=>currentViewHeaderText=txt"> </SideMenu>
     </aside>
-    <div class="h-full w-full">
+    <div class=" w-full">
       <header class="bg-white w-full h-14 shadow flex items-center pl-10 z-20 relative">
         <h1 class="font-semibold text-gray-700">Rule Engine</h1>
         <img src="/arrow.png" class="w-3 ml-2" />
