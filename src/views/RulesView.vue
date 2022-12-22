@@ -117,7 +117,9 @@ import Row from "primevue/row";
               v-for="(val, index) in Object.values(reg)"
               :key="index"
             >
-              {{ val }}
+              <div class="mt-3 mb-3">
+                {{ val }}
+              </div>
             </td>
           </tr>
         </table>
@@ -126,7 +128,6 @@ import Row from "primevue/row";
   </main>
   <div v-else class="h-full w-full flex flex-col items-center justify-center">
     <ProgressSpinner />
- 
   </div>
 </template>
 <script>
