@@ -6,7 +6,7 @@ export const EVALUATE = 'rules/eval'
 
 export class CRUDService {
 
-    static baseUrl = 'http://ec2-3-238-92-30.compute-1.amazonaws.com:8080/';
+    static baseUrl = 'http://localhost:8080/';
 
 
     static getExtraInfo(serviceRoute, itemId) {
